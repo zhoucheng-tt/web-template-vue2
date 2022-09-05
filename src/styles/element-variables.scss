@@ -1,0 +1,10 @@
+/*
+ * @Description: 引用elementui的样式
+ * @Author: zhoucheng
+ * @Github: https://github.com/zhoucheng-tt
+ * @Date: 2021-12-10 10:04:55
+ * @LastEditors: zhoucheng
+ */
+/* icon font path, required */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+@import '~element-ui/packages/theme-chalk/src/index';

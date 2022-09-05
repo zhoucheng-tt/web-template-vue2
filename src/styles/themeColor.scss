@@ -1,0 +1,19 @@
+/*
+ * @Description: 主题色切换内容
+ * @Author: zhoucheng
+ * @Github: https://github.com/zhoucheng-tt
+ * @Date: 2021-12-10 10:04:55
+ * @LastEditors: zhoucheng
+ */
+
+$themes: (
+  
+light: (
+  background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%),
+),
+
+dark: (
+background: linear-gradient(-45deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)
+)
+
+);
