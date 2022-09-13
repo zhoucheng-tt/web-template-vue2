@@ -64,9 +64,6 @@ export default {
    * @description: 将手机号中间四位变成*
    * @param {type} String
    * @eq 138****5621
-   * 
-
-  
    * @return {type} String
    */
   phoneNumberDesensitizate (phoneNumber) {

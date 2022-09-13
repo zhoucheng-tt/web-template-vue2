@@ -118,16 +118,6 @@ const routes = [
         }
       },
       {
-        path: "/plateNumber",
-        name: "plateNumber",
-        component: () => import("@/views/mobile/plateNumber/index.vue"),
-        meta: {
-          name: "车牌组件",
-          icon: "",
-          type: "list"
-        }
-      },
-      {
         path: "/commonJs",
         name: "commonJs",
         component: () => import("@/views/commonJs/index.vue"),

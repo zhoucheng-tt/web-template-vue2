@@ -107,7 +107,6 @@ export default {
             },
           ]
         },
-
         {
           code: "7",
           name: "饿了么组件封装",
@@ -117,18 +116,6 @@ export default {
               code: "7-1",
               name: "动态表单",
               routeName: "dynamicForm",
-            },
-          ]
-        },
-        {
-          code: "8",
-          name: "移动端",
-          routeName: "mobile",
-          children: [
-            {
-              code: "8-1",
-              name: "车牌组件",
-              routeName: "plateNumber",
             },
           ]
         },
