@@ -7,24 +7,20 @@
 -->
 <!--  -->
 <template>
-  <div class=''>
-
+  <div class='mainbody'>
   </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import durationtime from '@/commons/durationtime.js'
+import PersonClass from '@/utils/personClass'
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
   data () {
     //这里存放数据
     return {
-      // current: new Date().dateFmt('yyyy-MM-dd hh:mm:ss'),
-      current: "2022-10-01 11:59:59",
-      lastime: "2022-10-01 12:00:01"
     };
   },
   //监听属性 类似于data概念
@@ -32,11 +28,16 @@ export default {
   //监控data中的数据变化
   watch: {},
   //生命周期 - 创建完成（可以访问当前this实例）
-  created () { },
+  created () {
+
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    let time = durationtime(this.lastime, this.current)
-    console.log(time);
+    let person = new PersonClass('zhoucheng', '22')
+    let string = person.introducePerson()
+
+    console.log(string);
+    console.log(PersonClass.introduce());
   },
   beforeCreate () { }, //生命周期 - 创建之前
   beforeMount () { }, //生命周期 - 挂载之前
@@ -47,9 +48,14 @@ export default {
   activated () { }, //如果页面有keep-alive缓存功能，这个函数会触发
   //方法集合
   methods: {
+
   },
 }
 </script>
-<style lang='scss' scoped>
+<style lang='less' scoped>
 //@import url(); 引入公共css类
+.mainbody {
+  width: 100%;
+  height: 100%;
+}
 </style>

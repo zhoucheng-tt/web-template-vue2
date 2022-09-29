@@ -6,7 +6,7 @@
  * @LastEditors: zhoucheng
  */
 (function () {
-  Date.prototype.format = function (fmt) {
+  Date.prototype.dateFmt = function (fmt) {
     let o = {
       'M+': this.getMonth() + 1,
       'd+': this.getDate(),
