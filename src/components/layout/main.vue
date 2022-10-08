@@ -12,12 +12,15 @@
     </el-header>
     <el-container class="inner-container">
       <el-aside width="13%"
-                style="background-color: #FFFFFF;">
+                style="background-color: #FFFFFF">
         <sidebar></sidebar>
       </el-aside>
       <el-container style="width: 100%; height: 100%;margin-left:-1px">
         <el-main style="width: 100%; height: 100%">
-          <router-view></router-view>
+          <transition name="main-route"
+                      appear>
+            <router-view v-show="isShow"></router-view>
+          </transition>
         </el-main>
       </el-container>
     </el-container>
@@ -34,14 +37,14 @@ export default {
   },
   data () {
     return {
+      isShow: true
     }
   },
   methods: {
   },
   created () {
   },
-  mounted () {
-  }
+  mounted () { }
 }
 </script>
 
@@ -101,7 +104,21 @@ body > .el-container {
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
 }
-// /deep/ .el-scrollbar__bar.is-vertical {
-//   background: red !important;
-// }
+
+// 内容页面加载
+.main-route-enter-active {
+  animation: transitionAnimation 1s;
+}
+.main-route-leave-active {
+  animation: transitionAnimation 1s reverse;
+}
+// 从左向右加载
+@keyframes transitionAnimation {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
 </style>

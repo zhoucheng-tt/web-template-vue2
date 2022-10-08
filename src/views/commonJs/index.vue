@@ -80,7 +80,7 @@ export default {
     //这里存放数据
     return {
       timeDateLeft: "",
-      timeDateRight: new Date().format("yyyy-MM-dd hh:mm:ss"), // 日期格式化
+      timeDateRight: new Date().dateFmt("yyyy-MM-dd hh:mm:ss"), // 日期格式化
       dateTimeValue: '', // 当前时间
       weatherList: {}, // 南京天气
       // 分钟转化为小时、天 
@@ -155,7 +155,7 @@ export default {
   methods: {
     // 获取当前时间
     queryLineOneLeft () {
-      this.dateTimeValue = new Date().format("yyyy-MM-dd hh:mm:ss")
+      this.dateTimeValue = new Date().dateFmt("yyyy-MM-dd hh:mm:ss")
       let date = new Date()
       this.timeDateLeft = $commonsJs.dateFormat('yyyy-MM-dd HH:mm:ss', date)
     },
