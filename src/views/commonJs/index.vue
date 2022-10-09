@@ -9,58 +9,61 @@
   <div class='mainbody'>
     <el-row class="lineItem">
       <div class="title">日期格式化</div>
-      <div class="lable">{{timeDateLeft}}</div>
+      <div class="label">{{timeDateLeft}}</div>
       <div class="title">日期格式化</div>
-      <div class="lable">{{timeDateRight}}</div>
-      <div class="title">当前时间天气</div>
-      <div class="lable">
-        <span>{{ dateTimeValue }}</span>
-        <span>{{ weatherList.type }}</span>
-        <span>{{ weatherList.low }}/{{ weatherList.high }}</span>
-      </div>
+      <div class="label">{{timeDateRight}}</div>
     </el-row>
     <el-row class="lineItem">
       <div class="title">分钟格式化成小时、天</div>
-      <div class="lable">{{this.functionTwoData[0].value}}</div>
-      <div class="lable">{{this.functionTwoData[1].value}}</div>
-      <div class="lable">{{this.functionTwoData[2].value}}</div>
-      <div class="lable">{{this.functionTwoData[3].value}}</div>
-      <div class="lable">{{this.functionTwoData[4].value}}</div>
-      <div class="lable">{{this.functionTwoData[5].value}}</div>
-      <div class="lable">{{this.functionTwoData[6].value}}</div>
+      <div class="label">{{this.functionTwoData[0].value}}</div>
+      <div class="label">{{this.functionTwoData[1].value}}</div>
+      <div class="label">{{this.functionTwoData[2].value}}</div>
+      <div class="label">{{this.functionTwoData[3].value}}</div>
+      <div class="label">{{this.functionTwoData[4].value}}</div>
+      <div class="label">{{this.functionTwoData[5].value}}</div>
+      <div class="label">{{this.functionTwoData[6].value}}</div>
     </el-row>
     <el-row class="lineItem">
       <div class="title">两段时间间隔</div>
-      <div class="lable">默认时间:{{functionThreeData.pastTime}}</div>
-      <div class="lable">当前时间:{{dateTimeValue}}</div>
-      <div class="lable">时间间隔：{{functionThreeData.timeInterval}}</div>
+      <div class="label">默认时间:{{functionThreeData.pastTime}}</div>
+      <div class="label">当前时间:{{dateTimeValue}}</div>
+      <div class="label">时间间隔：{{functionThreeData.timeInterval}}</div>
     </el-row>
     <el-row class="lineItem">
       <div class="title">手机号脱敏</div>
-      <div class="lable">手机号:{{functionFourData.phoneNumber}}</div>
-      <div class="lable">脱敏后:{{functionFourData.phoneNumberAfter}}</div>
+      <div class="label">手机号:{{functionFourData.phoneNumber}}</div>
+      <div class="label">脱敏后:{{functionFourData.phoneNumberAfter}}</div>
       <div class="title">邮箱脱敏</div>
-      <div class="lable">邮箱:{{functionFourData.email}}</div>
-      <div class="lable">脱敏后:{{functionFourData.emailAfter}}</div>
+      <div class="label">邮箱:{{functionFourData.email}}</div>
+      <div class="label">脱敏后:{{functionFourData.emailAfter}}</div>
     </el-row>
     <el-row class="lineItem">
       <div class="title">姓名脱敏</div>
-      <div class="lable">姓名:{{functionFiveData.name}}</div>
-      <div class="lable">脱敏后:{{functionFiveData.nameAfter}}</div>
+      <div class="label">姓名:{{functionFiveData.name}}</div>
+      <div class="label">脱敏后:{{functionFiveData.nameAfter}}</div>
       <div class="title">身份证脱敏</div>
-      <div class="lable">身份证:{{functionFiveData.idcard}}</div>
-      <div class="lable">脱敏后:{{functionFiveData.idcardAfter}}</div>
+      <div class="label">身份证:{{functionFiveData.idcard}}</div>
+      <div class="label">脱敏后:{{functionFiveData.idcardAfter}}</div>
     </el-row>
     <el-row class="lineItem">
       <div class="title">车牌号校验</div>
-      <div class="lable">{{functionSixData.plateNumber}}</div>
+      <div class="label">{{functionSixData.plateNumber}}</div>
     </el-row>
     <el-row class="lineItem">
       <div class="title">去除空格</div>
-      <div class="lable">{{functionSevenData.removeBlankAll}}</div>
-      <div class="lable">{{functionSevenData.removeBlankTwo}}</div>
-      <div class="lable">{{functionSevenData.removeBlankLeft}}</div>
-      <div class="lable">{{functionSevenData.removeBlankRight}}</div>
+      <div class="label">{{functionSevenData.removeBlankAll}}</div>
+      <div class="label">{{functionSevenData.removeBlankTwo}}</div>
+      <div class="label">{{functionSevenData.removeBlankLeft}}</div>
+      <div class="label">{{functionSevenData.removeBlankRight}}</div>
+    </el-row>
+    <el-row class="lineItem">
+      <div class="title">获取当前IP天气</div>
+      <div class="label">
+        <span class="span">{{functionEightData.adcode}} {{functionEightData.address}}</span>
+        <span class="span">{{functionEightData.date}}</span>
+        <span class="span">{{functionEightData.nighttemp}}℃~{{functionEightData.daytemp}}℃</span>
+        <span class="span">{{functionEightData.dayweather}}转{{functionEightData.nightweather}}</span>
+      </div>
     </el-row>
   </div>
 </template>
@@ -70,7 +73,6 @@
 
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import $ from "jquery";
 import $commonsJs from '@/commons/commonsJs.js'
 
 export default {
@@ -82,7 +84,6 @@ export default {
       timeDateLeft: "",
       timeDateRight: new Date().dateFmt("yyyy-MM-dd hh:mm:ss"), // 日期格式化
       dateTimeValue: '', // 当前时间
-      weatherList: {}, // 南京天气
       // 分钟转化为小时、天 
       functionTwoData: [
         { value: "", idx: "0" },
@@ -117,40 +118,38 @@ export default {
         removeBlankTwo: " 我是谁 ",
         removeBlankLeft: " 我是谁",
         removeBlankRight: "我是谁 ",
+      },
+      functionEightData: {
+        adcode: "",
+        address: "",
+        date: "",
+        nighttemp: "",
+        daytemp: "",
+        dayweather: "",
+        nightweather: ""
       }
     };
   },
   //监听属性 类似于data概念
   computed: {},
   //监控data中的数据变化
-  watch: {
-
-  },
+  watch: {},
   //生命周期 - 创建完成（可以访问当前this实例）
-  created () {
-
-  },
+  created () { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
     setInterval(() => {
       this.queryLineOneLeft();// 当前时间
       this.queryLineThree()// 时间间隔
     }, 1000);
-    this.queryLineOneRight();// 当前天气
     this.queryLineTwo()// 分钟转化为小时、天 
     this.queryLineFour()// 手机号脱敏 邮箱脱敏
     this.queryLineFive() // 姓名脱敏 身份证脱敏
     this.queryLineSix() // 车牌号校验
     this.queryLineSeven() // 字符串去除空格
+    this.queryLineEight() // 获取当前IP的天气
   },
-  beforeCreate () { }, //生命周期 - 创建之前
-  beforeMount () { }, //生命周期 - 挂载之前
-  beforeUpdate () { }, //生命周期 - 更新之前
-  updated () { }, //生命周期 - 更新之后
-  beforeDestroy () {
-  }, //生命周期 - 销毁之前
-  destroyed () { }, //生命周期 - 销毁完成
-  activated () { }, //如果页面有keep-alive缓存功能，这个函数会触发
+
   //方法集合
   methods: {
     // 获取当前时间
@@ -158,20 +157,6 @@ export default {
       this.dateTimeValue = new Date().dateFmt("yyyy-MM-dd hh:mm:ss")
       let date = new Date()
       this.timeDateLeft = $commonsJs.dateFormat('yyyy-MM-dd HH:mm:ss', date)
-    },
-    // 获取当前天气
-    queryLineOneRight () {
-      var _this = this;
-      $.ajax({
-        url: "http://wthrcdn.etouch.cn/weather_mini?city=南京", type: "get",
-        success: function (data) {
-          var weatherResults = JSON.parse(data).data;
-          var temp = weatherResults.forecast[0];
-          _this.weatherList.high = temp.high.substring(3, 6);
-          _this.weatherList.low = temp.low.substring(3, 6);
-          _this.weatherList.type = temp.type;
-        }
-      });
     },
     // 分钟转化为小时、天 
     queryLineTwo () {
@@ -208,8 +193,45 @@ export default {
       this.functionSevenData.removeBlankTwo = $commonsJs.removeBlankSpace(this.functionSevenData.removeBlankTwo, 1) // 两端空格
       this.functionSevenData.removeBlankLeft = $commonsJs.removeBlankSpace(this.functionSevenData.removeBlankLeft, 2) // 左侧空格
       this.functionSevenData.removeBlankRight = $commonsJs.removeBlankSpace(this.functionSevenData.removeBlankRight, 3) // 右侧空格
+    },
+    // 获取当前天气
+    queryLineEight () {
+      // 获取当前所在城市
+      let that = this
+      window.AMap.plugin('AMap.CitySearch', function () {
+        var citySearch = new window.AMap.CitySearch()
+        citySearch.getLocalCity(function (status, result) {
+          if (status === 'complete' && result.info === 'OK') {
+            that.functionEightData.address = result.city
+            // 根据城市换取adcode（城市编码）
+            let city = "https://restapi.amap.com/v3/config/district?keywords=" + result.city + "&subdistrict=1&key=5231c8309b3e70e763b378a0cc685f39"
+            that.$axios.get(city).then((res) => {
+              that.functionEightData.adcode = res.data.districts[0].adcode
+            })
+            // 获取天气
+            let weather = "https://restapi.amap.com/v3/weather/weatherInfo?city=" + result.adcode + "&key=5231c8309b3e70e763b378a0cc685f39&extensions=all"
+            that.$axios.get(weather).then((res) => {
+              console.log(res.data);
+              that.functionEightData.date = res.data.forecasts[0].casts[0].date
+              that.functionEightData.nighttemp = res.data.forecasts[0].casts[0].nighttemp
+              that.functionEightData.daytemp = res.data.forecasts[0].casts[0].daytemp
+              that.functionEightData.dayweather = res.data.forecasts[0].casts[0].dayweather
+              that.functionEightData.nightweather = res.data.forecasts[0].casts[0].nightweather
+
+            })
+          }
+        })
+      })
     }
   },
+  beforeCreate () { }, //生命周期 - 创建之前
+  beforeMount () { }, //生命周期 - 挂载之前
+  beforeUpdate () { }, //生命周期 - 更新之前
+  updated () { }, //生命周期 - 更新之后
+  beforeDestroy () {
+  }, //生命周期 - 销毁之前
+  destroyed () { }, //生命周期 - 销毁完成
+  activated () { }, //如果页面有keep-alive缓存功能，这个函数会触发
 }
 </script>
 <style lang='scss' scoped>
@@ -227,10 +249,14 @@ export default {
       padding-left: 20px;
       font-weight: 600;
     }
-    .lable {
+    .label {
       margin-left: 10px;
       border: 1px solid rgb(26, 18, 18);
       padding: 0 10px;
+      .span {
+        margin-left: 10px;
+        line-height: 40px;
+      }
     }
   }
 }

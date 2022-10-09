@@ -14,11 +14,12 @@ Vue.use(VideoPlayer)
 import flvjs from 'flv.js'
 Vue.use(flvjs)
 
+// 全局使用axios
+import axios from 'axios'
+Vue.prototype.$axios = axios
 
 // 全局js
 import './commons/date.js'
-import axios from 'axios'
-Vue.prototype.$axios = axios
 
 // 使用echarts npm install --save echarts
 import echarts from 'echarts'
