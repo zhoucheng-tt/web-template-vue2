@@ -1,4 +1,10 @@
-<!--  -->
+<!--
+ * @Description: keyframes 动效
+ * @Author: zhoucheng
+ * @Github: https://github.com/zhoucheng-tt
+ * @Date: 2022-10-10 10:09:50
+ * @LastEditors: zhoucheng
+-->
 <template>
   <div class='mainbody'>
     <el-row class="lineone">
@@ -15,7 +21,7 @@
         <div class="imagelogobottom"></div>
       </el-row>
       <el-row class="bottomrightImg">
-        <img class="Rotation img"
+        <img class="rotation img"
              :src="dynamiUp" />
       </el-row>
     </el-row>
@@ -53,9 +59,7 @@ export default {
   },
   beforeCreate () { }, // 生命周期 - 创建之前
   beforeMount () { }, // 生命周期 - 挂载之前
-  beforeUpdate () {
-
-  }, // 生命周期 - 更新之前
+  beforeUpdate () { }, // 生命周期 - 更新之前
   updated () { }, // 生命周期 - 更新之后
   beforeDestroy () { }, // 生命周期 - 销毁之前
   destroyed () { }, // 生命周期 - 销毁完成
@@ -217,18 +221,28 @@ export default {
       width: 28%;
       height: 80%;
       margin-left: 12%;
+      margin-top: 3%;
       display: flex;
+      position: relative;
       justify-content: center;
       align-items: center;
+      @keyframes rotation {
+        from {
+          -webkit-transform: rotate(0deg);
+        }
+        to {
+          -webkit-transform: rotate(180deg);
+        }
+      }
       @-webkit-keyframes rotation {
         from {
           -webkit-transform: rotate(0deg);
         }
         to {
-          -webkit-transform: rotate(360deg);
+          -webkit-transform: rotate(180deg);
         }
       }
-      .Rotation {
+      .rotation {
         -webkit-transform: rotate(360deg);
         animation: rotation 5s linear infinite;
         -moz-animation: rotation 5s linear infinite;

@@ -48,6 +48,11 @@ export default {
               name: "页面加载loading",
               routeName: "loadingAnimation",
             },
+            {
+              code: "6-4",
+              name: "动画样例",
+              routeName: "animationExample",
+            },
           ]
         },
         {

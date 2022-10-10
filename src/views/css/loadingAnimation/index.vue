@@ -1,5 +1,5 @@
 <!--
- * @Description: 
+ * @Description: 加载动画
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
  * @Date: 2021-11-29 14:27:24
@@ -9,39 +9,11 @@
   <div class='mainbody'>
     <el-row class="lineOne">
       <el-row class="item">
-        <section>
-          <div class="firstLonding">
-            <span style="--i:1"></span>
-            <span style="--i:2;"></span>
-            <span style="--i:3;"></span>
-            <span style="--i:4;"></span>
-            <span style="--i:5;"></span>
-            <span style="--i:6;"></span>
-            <span style="--i:7;"></span>
-            <span style="--i:8;"></span>
-            <span style="--i:9;"></span>
-            <span style="--i:10;"></span>
-            <span style="--i:11;"></span>
-            <span style="--i:12;"></span>
-            <span style="--i:13;"></span>
-            <span style="--i:14;"></span>
-            <span style="--i:15;"></span>
-            <span style="--i:16;"></span>
-            <span style="--i:17;"></span>
-            <span style="--i:18;"></span>
-            <span style="--i:19;"></span>
-            <span style="--i:20;"></span>
-          </div>
-        </section>
+        <div class="firstLoading"></div>
       </el-row>
       <el-row class="item">
         <div class="secondLoading"></div>
       </el-row>
-      <el-row class="item">
-        <div class="thirdLoading"></div>
-      </el-row>
-    </el-row>
-    <el-row class="lineTwo">
       <el-row class="item">
         <div class="forthLoading">
           <i></i>
@@ -51,8 +23,15 @@
           <i></i>
         </div>
       </el-row>
+    </el-row>
+    <el-row class="lineTwo">
       <el-row class="item">
-        <div class="fifthLoading"><i></i></div>
+        <div class='thirdLoading'></div>
+      </el-row>
+      <el-row class="item">
+        <div class="fifthLoading">
+          <span>努力加载中.....</span>
+        </div>
       </el-row>
       <el-row class="item">
       </el-row>
@@ -116,95 +95,15 @@ export default {
       justify-content: center;
       align-items: center;
       border: 1px solid black;
-      section {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: animateBackground 10s linear infinite;
-      }
-      @keyframes animateBackground {
-        0% {
-          filter: hue-rotate(0deg);
-        }
-        100% {
-          filter: hue-rotate(360deg);
-        }
-      }
-      section .firstLonding {
-        position: relative;
-        width: 120px;
-        height: 120px;
-      }
-      section .firstLonding span {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transform: rotate(calc(18deg * var(--i)));
-      }
-      section .firstLonding span::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 15px;
-        height: 15px;
-        background: #00ff0a;
-        border-radius: 50%;
-        box-shadow: 0 0 10px #00ff0a, 0 0 20px #00ff0a, 0 0 40px #00ff0a,
-          0 0 80px #00ff0a, 0 0 100px #00ff0a;
-        animation: animate 2s linear infinite;
-        animation-delay: calc(0.1s * var(--i));
-      }
-      @keyframes animate {
-        0% {
-          transform: scale(1);
-        }
-        80%,
-        100% {
-          transform: scale(0);
-        }
-      }
-      .secondLoading {
-        width: 1em;
-        height: 1em;
-        border-radius: 50%;
-        position: relative;
-        font-size: 20px;
-        animation: second-load-effect 1s infinite linear;
-      }
-      @keyframes second-load-effect {
-        0% {
-          box-shadow: -3em 2em 0 0.5em #4158d0, 0 2em 0 0 #4158d0,
-            3em 2em 0 -0.5em #4158d0;
-        }
-        25% {
-          box-shadow: -3em 2em 0 0 #4158d0, 0 2em 0 -0.5em #4158d0,
-            3em 2em 0 0 #4158d0;
-        }
-        50% {
-          box-shadow: -3em 2em 0 -0.5em #4158d0, 0 2em 0 0 #4158d0,
-            3em 2em 0 0.5em #4158d0;
-        }
-        75% {
-          box-shadow: -3em 2em 0 0 #4158d0, 0 2em 0 0.5em #4158d0,
-            3em 2em 0 0 #4158d0;
-        }
-        100% {
-          box-shadow: -3em 2em 0 0.5em #4158d0, 0 2em 0 0 #4158d0,
-            3em 2em 0 -0.5em #4158d0;
-        }
-      }
-      .thirdLoading {
+      .firstLoading {
         font-size: 20px;
         width: 1em;
         height: 1em;
         border-radius: 50%;
         text-indent: -9999em;
-        animation: third-load-effect 1s infinite linear;
+        animation: first-load-effect 1s infinite linear;
       }
-      @keyframes third-load-effect {
+      @keyframes first-load-effect {
         0% {
           box-shadow: 0 0.2em #4158d0, /*上*/ 2em -2em 0 0 #4158d0,
             /*右上*/ 3em 0 0 -0.5em #4158d0, /*右*/ 2em 2em 0 -0.5em #4158d0,
@@ -260,28 +159,42 @@ export default {
             -3em 0 0 -0.5em #4158d0, -2em -2em 0 0 #4158d0;
         }
       }
-    }
-  }
-  .lineTwo {
-    width: 100%;
-    height: 32%;
-    display: flex;
-    margin-top: 1%;
-    .item {
-      width: 32%;
-      height: 100%;
-      margin-left: 1%;
-      margin-top: 1%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid black;
+      .secondLoading {
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        position: relative;
+        font-size: 20px;
+        animation: second-load-effect 1s infinite linear;
+      }
+      @keyframes second-load-effect {
+        0% {
+          box-shadow: -3em 2em 0 0.5em #4158d0, 0 2em 0 0 #4158d0,
+            3em 2em 0 -0.5em #4158d0;
+        }
+        25% {
+          box-shadow: -3em 2em 0 0 #4158d0, 0 2em 0 -0.5em #4158d0,
+            3em 2em 0 0 #4158d0;
+        }
+        50% {
+          box-shadow: -3em 2em 0 -0.5em #4158d0, 0 2em 0 0 #4158d0,
+            3em 2em 0 0.5em #4158d0;
+        }
+        75% {
+          box-shadow: -3em 2em 0 0 #4158d0, 0 2em 0 0.5em #4158d0,
+            3em 2em 0 0 #4158d0;
+        }
+        100% {
+          box-shadow: -3em 2em 0 0.5em #4158d0, 0 2em 0 0 #4158d0,
+            3em 2em 0 -0.5em #4158d0;
+        }
+      }
       .forthLoading i {
         display: inline-block;
-        width: 4px;
-        height: 35px;
+        width: 8px;
+        height: 80px;
         border-radius: 2px;
-        margin: 0 2px;
+        margin: 0 5px;
         background-color: #4158d0;
       }
       .forthLoading i:nth-child(1) {
@@ -358,93 +271,178 @@ export default {
           transform: scaleY(1);
         }
       }
-      .fifthLoading {
-        width: 35px;
-        height: 35px;
-        position: relative;
-      }
-      .fifthLoading i {
-        display: block;
+    }
+  }
+  .lineTwo {
+    width: 100%;
+    height: 32%;
+    display: flex;
+    margin-top: 1%;
+    .item {
+      width: 32%;
+      height: 100%;
+      margin-left: 1%;
+      margin-top: 1%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      .thirdLoading {
         width: 100%;
         height: 100%;
+      }
+      .thirdLoading.fixed {
+        position: fixed;
+      }
+      .thirdLoading:before {
+        content: '';
+        width: 150px;
+        height: 150px;
+        background-color: rgba(0, 0, 0, 0);
+        opacity: 0.9;
+        margin: 0 auto;
+        position: absolute;
+        left: 35%;
+        top: 25%;
         border-radius: 50%;
-        background: linear-gradient(
-          transparent 0%,
-          transparent 70%,
-          #4158d0 30%,
-          #4158d0 100%
-        );
-        background: -webkit-linear-gradient(
-          transparent 0%,
-          transparent 70%,
-          #4158d0 30%,
-          #4158d0 100%
-        );
-        background: -moz-linear-gradient(
-          transparent 0%,
-          transparent 70%,
-          #4158d0 30%,
-          #4158d0 100%
-        );
-        background: -ms-linear-gradient(
-          transparent 0%,
-          transparent 70%,
-          #4158d0 30%,
-          #4158d0 100%
-        );
-        background: -o-linear-gradient(
-          transparent 0%,
-          transparent 70%,
-          #4158d0 30%,
-          #4158d0 100%
-        );
-        -webkit-animation: fifthLoading 0.5s linear infinite;
-        -moz-animation: fifthLoading 0.5s linear infinite;
-        -o-animation: fifthLoading 0.5s linear infinite;
-        animation: fifthLoading 0.5s linear infinite;
+        border: 5px solid #4158d0;
+        border-right: 5px solid rgba(0, 0, 0, 0);
+        border-left: 5px solid rgba(0, 0, 0, 0);
+        box-shadow: 0 0 35px #4158d0;
+        -moz-animation: spinPulse 1s infinite ease-in-out;
+        -webkit-animation: spinPulse 1s infinite linear;
       }
-      @-webkit-keyframes fifthLoading {
+      .thirdLoading:after {
+        content: '';
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        position: absolute;
+        left: 41.5%;
+        top: 37%;
+        background-color: rgba(0, 0, 0, 0);
+        opacity: 0.9;
+        border: 5px solid #4158d0;
+        border-radius: 50%;
+        border-left: 5px solid rgba(0, 0, 0, 0);
+        border-right: 5px solid rgba(0, 0, 0, 0);
+        box-shadow: 0 0 15px #4158d0;
+        -moz-animation: spinoffPulse 1s infinite linear;
+        -webkit-animation: spinoffPulse 1s infinite linear;
+      }
+      @keyframes spinPulse {
         0% {
-          transform: rotate(0deg);
+          -webkit-transform: rotate(160deg);
+          opacity: 0;
+          box-shadow: 0 0 1px #4158d0;
         }
         50% {
-          transform: rotate(180deg);
+          -webkit-transform: rotate(145deg);
+          opacity: 1;
         }
         100% {
+          -webkit-transform: rotate(-320deg);
+          opacity: 0;
+        }
+      }
+      @keyframes spinoffPulse {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @-moz-keyframes spinPulse {
+        0% {
+          -moz-transform: rotate(160deg);
+          opacity: 0;
+          box-shadow: 0 0 1px #4158d0;
+        }
+        50% {
+          -moz-transform: rotate(145deg);
+          opacity: 1;
+        }
+        100% {
+          -moz-transform: rotate(-320deg);
+          opacity: 0;
+        }
+      }
+      @-moz-keyframes spinoffPulse {
+        0% {
+          -moz-transform: rotate(0deg);
+        }
+        100% {
+          -moz-transform: rotate(360deg);
+        }
+      }
+      @-webkit-keyframes spinPulse {
+        0% {
+          -webkit-transform: rotate(160deg);
+          opacity: 0;
+          box-shadow: 0 0 1px #4158d0;
+        }
+        50% {
+          -webkit-transform: rotate(145deg);
+          opacity: 1;
+        }
+        100% {
+          -webkit-transform: rotate(-320deg);
+          opacity: 0;
+        }
+      }
+      @-webkit-keyframes spinoffPulse {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      .fifthLoading {
+        width: 200px;
+        height: 200px;
+        box-sizing: border-box;
+        border-radius: 50%;
+        border-top: 10px solid #4158d0;
+        position: relative;
+        animation: fifthLoadingIn 2s linear infinite;
+      }
+      .fifthLoading::before,
+      .fifthLoading::after {
+        content: '';
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        left: 0;
+        top: -10px;
+        box-sizing: border-box;
+        border-radius: 50%;
+      }
+      .fifthLoading::before {
+        border-top: 10px solid #fbc2eb;
+        transform: rotate(120deg);
+      }
+      .fifthLoading::after {
+        border-top: 10px solid #a6c1ee;
+        transform: rotate(240deg);
+      }
+      .fifthLoading span {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        line-height: 200px;
+        animation: fifthLoadingOut 2s linear infinite;
+      }
+      @keyframes fifthLoadingIn {
+        to {
           transform: rotate(360deg);
         }
       }
-      @-moz-keyframes fifthLoading {
-        0% {
-          transform: rotate(0deg);
-        }
-        50% {
-          transform: rotate(180deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-      @-o-keyframes fifthLoading {
-        0% {
-          transform: rotate(0deg);
-        }
-        50% {
-          transform: rotate(180deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-      @keyframes fifthLoading {
-        0% {
-          transform: rotate(0deg);
-        }
-        50% {
-          transform: rotate(180deg);
-        }
-        100% {
-          transform: rotate(360deg);
+      @keyframes fifthLoadingOut {
+        to {
+          transform: rotate(-360deg);
         }
       }
     }

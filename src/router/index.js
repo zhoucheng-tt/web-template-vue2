@@ -98,6 +98,12 @@ const routes = [
         }
       },
       {
+        path: "/animationExample",
+        name: "animationExample",
+        component: () => import("@/views/css/animationExample/index.vue"),
+        meta: { name: "css-动画样例", icon: "", type: "list" }
+      },
+      {
         path: "/flashback",
         name: "flashback",
         component: () => import("@/views/loginShow/flashback/index.vue"),
