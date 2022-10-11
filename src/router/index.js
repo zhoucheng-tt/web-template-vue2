@@ -136,22 +136,20 @@ const routes = [
       {
         path: "/amapMap",
         name: "amapMap",
-        component: () => import("@/views/amapMap/index.vue"),
-        meta: {
-          name: "高德地图",
-          icon: "",
-          type: "list"
-        }
+        component: () => import("@/views/amapMap/amapMap/index.vue"),
+        meta: { name: "高德地图", icon: "", type: "list" }
       },
       {
         path: "/thermodynamic",
         name: "thermodynamic",
         component: () => import("@/views/amapMap/thermodynamic/index.vue"),
-        meta: {
-          name: "高德地图-热力图",
-          icon: "",
-          type: "list"
-        }
+        meta: { name: "高德地图-热力图", icon: "", type: "list" }
+      },
+      {
+        path: "/baiduMap",
+        name: "baiduMap",
+        component: () => import("@/views/baiduMap/baiduMap/index.vue"),
+        meta: { name: "百度地图", icon: "", type: "list" }
       },
       {
         path: "/checkTrueCode",

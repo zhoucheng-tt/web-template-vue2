@@ -29,84 +29,84 @@ export default {
           routeName: "homePage"
         },
         {
-          code: "6",
+          code: "2",
           name: "Css",
           routeName: "css",
           children: [
             {
-              code: "6-1",
+              code: "2-1",
               name: "文字背景(动)",
               routeName: "dynamicBackground",
             },
             {
-              code: "6-2",
+              code: "2-2",
               name: "移动/转动",
               routeName: "dynamicEffect",
             },
             {
-              code: "6-3",
+              code: "2-3",
               name: "页面加载loading",
               routeName: "loadingAnimation",
             },
             {
-              code: "6-4",
+              code: "2-4",
               name: "动画样例",
               routeName: "animationExample",
             },
           ]
         },
         {
-          code: "2",
+          code: "3",
           name: "JavaScript",
           routeName: "commonJs",
           children: []
         },
         {
-          code: "3",
+          code: "4",
           name: "HighCharts",
           routeName: "highcharts",
           children: [
             {
-              code: "3-1",
+              code: "4-1",
               name: "饼图",
               routeName: "highchartsPie",
             },
           ]
         },
         {
-          code: "4",
+          code: "5",
           name: "ECharts",
           routeName: "echarts",
           children: [
             {
-              code: "4-1",
+              code: "5-1",
               name: "饼图",
               routeName: "echartsPie",
             },
             {
-              code: "4-2",
+              code: "5-2",
               name: "线图",
               routeName: "echartsLine",
             },
             {
-              code: "4-3",
+              code: "5-3",
               name: "柱状图",
               routeName: "echartsColumn",
             },
           ]
         },
         {
-          code: "5",
+          code: "6",
           name: "高德地图",
           routeName: "",
           children: [
             {
-              code: "5-1",
+              code: "6-1",
               name: "基本图",
               routeName: "amapMap",
             },
             {
-              code: "5-2",
+              code: "6-2",
               name: "热力图",
               routeName: "thermodynamic",
             },
@@ -114,11 +114,23 @@ export default {
         },
         {
           code: "7",
+          name: "百度地图",
+          routeName: "",
+          children: [
+            {
+              code: "7-1",
+              name: "百度地图",
+              routeName: "baiduMap",
+            },
+          ]
+        },
+        {
+          code: "8",
           name: "饿了么组件封装",
           routeName: "element",
           children: [
             {
-              code: "7-1",
+              code: "8-1",
               name: "动态表单",
               routeName: "dynamicForm",
             },
