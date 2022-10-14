@@ -31,7 +31,6 @@ export default {
         {
           code: "2",
           name: "Css",
-          routeName: "css",
           children: [
             {
               code: "2-1",
@@ -53,6 +52,12 @@ export default {
               name: "动画样例",
               routeName: "animationExample",
             },
+            {
+              code: "2-5",
+              name: "悬浮猫头",
+              routeName: "hoverCat",
+            },
+
           ]
         },
         {
@@ -64,7 +69,6 @@ export default {
         {
           code: "4",
           name: "HighCharts",
-          routeName: "highcharts",
           children: [
             {
               code: "4-1",
@@ -76,7 +80,6 @@ export default {
         {
           code: "5",
           name: "ECharts",
-          routeName: "echarts",
           children: [
             {
               code: "5-1",
@@ -98,7 +101,6 @@ export default {
         {
           code: "6",
           name: "高德地图",
-          routeName: "",
           children: [
             {
               code: "6-1",
@@ -115,7 +117,6 @@ export default {
         {
           code: "7",
           name: "百度地图",
-          routeName: "",
           children: [
             {
               code: "7-1",
@@ -127,7 +128,6 @@ export default {
         {
           code: "8",
           name: "饿了么组件封装",
-          routeName: "element",
           children: [
             {
               code: "8-1",
