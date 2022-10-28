@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: zhoucheng
+ * @Github: https://github.com/zhoucheng-tt
+ * @Date: 2022-10-10 10:09:50
+ * @LastEditors: zhoucheng
+ */
 import Vue from 'vue'
 import App from './App.vue'
 import ElementUI from 'element-ui'
@@ -17,6 +24,10 @@ Vue.use(flvjs)
 // 全局使用axios
 import axios from 'axios'
 Vue.prototype.$axios = axios
+
+// 使用深拷贝
+import deepClone from '@/commons/deepClone.js'
+Vue.prototype.$deepClone = deepClone
 
 // 全局js
 import './commons/date.js'
