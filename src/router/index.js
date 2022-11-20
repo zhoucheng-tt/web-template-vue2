@@ -110,6 +110,12 @@ const routes = [
         meta: { name: "css-悬浮猫头", icon: "", type: "list" }
       },
       {
+        path: "/textEffect",
+        name: "textEffect",
+        component: () => import("@/views/css/textEffect/index.vue"),
+        meta: { name: "css-文本效果", icon: "", type: "list" }
+      },
+      {
         path: "/flashback",
         name: "flashback",
         component: () => import("@/views/loginShow/flashback/index.vue"),

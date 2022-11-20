@@ -1,13 +1,20 @@
 <!--
- * @Description: 
+ * @Description: css文字效果
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2022-10-10 10:09:50
+ * @Date: 2022-11-20 17:49:36
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-
+    <el-row class="lineOne">
+      <el-row class="item">
+      </el-row>
+      <el-row class="item">
+      </el-row>
+      <el-row class="item">
+      </el-row>
+    </el-row>
   </div>
 </template>
 
@@ -54,6 +61,20 @@ export default {
 .mainbody {
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
+  .lineOne {
+    width: 100%;
+    height: 32%;
+    display: flex;
+    .item {
+      width: 32%;
+      height: 100%;
+      margin-left: 1%;
+      margin-top: 1%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+    }
+  }
 }
 </style>

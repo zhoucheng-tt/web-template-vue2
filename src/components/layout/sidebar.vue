@@ -52,12 +52,10 @@ export default {
               name: "动画样例",
               routeName: "animationExample",
             },
+            { code: "2-5", name: "悬浮猫头", routeName: "hoverCat" },
             {
-              code: "2-5",
-              name: "悬浮猫头",
-              routeName: "hoverCat",
+              code: "2-6", name: "文本效果", routeName: "textEffect",
             },
-
           ]
         },
         {
