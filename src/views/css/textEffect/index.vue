@@ -9,6 +9,9 @@
   <div class='mainbody'>
     <el-row class="lineOne">
       <el-row class="item">
+        <span class="item-contentLeft">
+          人间会一如平常
+        </span>
       </el-row>
       <el-row class="item">
       </el-row>
@@ -74,6 +77,22 @@ export default {
       justify-content: center;
       align-items: center;
       border: 1px solid black;
+      .item-contentLeft {
+        color: #ffffff;
+        font-size: 32px;
+        position: relative;
+        z-index: 1;
+        user-select: none;
+      }
+      .item-contentLeft::before {
+        content: '人间会一如平常';
+        width: 100%;
+        position: absolute;
+        color: gray;
+        left: 15px;
+        transform: skewX(-50deg);
+        z-index: -1;
+      }
     }
   }
 }
