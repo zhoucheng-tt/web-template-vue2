@@ -25,6 +25,10 @@ Vue.use(flvjs)
 import axios from 'axios'
 Vue.prototype.$axios = axios
 
+// gsap
+// import gsap from 'gsap'
+// Vue.prototype.$gsap = gsap
+
 // 使用深拷贝
 import deepClone from '@/commons/deepClone.js'
 Vue.prototype.$deepClone = deepClone

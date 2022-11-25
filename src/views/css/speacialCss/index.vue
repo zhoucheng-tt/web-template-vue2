@@ -20,6 +20,12 @@
         </div>
       </el-row>
       <el-row class="item">
+        <div class="lineMiddle">
+          <span class="itemTitle">毛玻璃</span>
+          <div class="lineOneMiddle">
+
+          </div>
+        </div>
       </el-row>
       <el-row class="item">
       </el-row>
@@ -113,6 +119,8 @@ export default {
       .lineOneLeftItem:nth-last-child(1) {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 25% 100%);
       }
+    }
+    .lineOneMiddle {
     }
   }
 }

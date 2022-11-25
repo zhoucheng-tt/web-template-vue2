@@ -14,6 +14,19 @@
         </span>
       </el-row>
       <el-row class="item">
+        <span class="item-contentMiddle">
+          人间会一如平常
+        </span>
+      </el-row>
+      <el-row class="item">
+        <div>{{lineOneRight.startNumber}}</div>
+      </el-row>
+    </el-row>
+    <el-row class="lineTwo">
+      <el-row class="item">
+
+      </el-row>
+      <el-row class="item">
       </el-row>
       <el-row class="item">
       </el-row>
@@ -31,7 +44,11 @@ export default {
   data () {
     // 这里存放数据
     return {
-
+      lineOneRight: {
+        startNumber: 0,
+        endNumber: 1100,
+        speed: 10
+      }
     };
   },
   // 监听属性 类似于data概念
@@ -44,11 +61,25 @@ export default {
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-
+    this.dynamicNumber(this.lineOneRight.startNumber, this.lineOneRight.endNumber, this.lineOneRight.speed);
   },
   // 方法集合
   methods: {
-
+    dynamicNumber (startNumber, endNumber, speed) {
+      if (endNumber > 0) {
+        let that = this
+        var timeTask = setInterval(function () {
+          startNumber++;
+          that.lineOneRight.startNumber = startNumber
+          if (startNumber === endNumber) {
+            clearInterval(timeTask);
+          }
+        }, speed);
+      }
+      else {
+        alert('最终数字不是正数')
+      }
+    }
   },
   beforeCreate () { }, // 生命周期 - 创建之前
   beforeMount () { }, // 生命周期 - 挂载之前
@@ -93,6 +124,37 @@ export default {
         transform: skewX(-50deg);
         z-index: -1;
       }
+      .item-contentMiddle {
+        color: #ffffff;
+        font-size: 32px;
+        position: relative;
+        z-index: 1;
+        user-select: none;
+        background-clip: text;
+        background-image: -webkit-linear-gradient(
+          bottom,
+          lightgreen,
+          lightpink,
+          lightyellow
+        );
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+  .lineTwo {
+    width: 100%;
+    height: 32%;
+    display: flex;
+    margin-top: 10px;
+    .item {
+      width: 32%;
+      height: 100%;
+      margin-left: 1%;
+      margin-top: 1%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
     }
   }
 }
