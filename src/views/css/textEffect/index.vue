@@ -19,12 +19,13 @@
         </span>
       </el-row>
       <el-row class="item">
-        <div>{{lineOneRight.startNumber}}</div>
+        <span class="item-contentRight"
+              type="button">人间会一如平常</span>
       </el-row>
     </el-row>
     <el-row class="lineTwo">
       <el-row class="item">
-
+        <div>{{lineOneRight.startNumber}}</div>
       </el-row>
       <el-row class="item">
       </el-row>
@@ -138,6 +139,46 @@ export default {
           lightyellow
         );
         -webkit-text-fill-color: transparent;
+      }
+      .item-contentRight {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+        color: #00a67c;
+        transition: all 1s ease;
+        -webkit-transition: all 1s ease;
+      }
+      .item-contentRight:hover {
+        color: lightpink;
+        animation: contentRightKeyframes 1.5s ease infinite alternate;
+        -webkit-animation: contentRightKeyframes 1.5s ease infinite alternate;
+      }
+      @-webkit-keyframes contentRightKeyframes {
+        from {
+          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+            0 0 40px #00a67c, 0 0 70px #00a67c, 0 0 80px #00a67c,
+            0 0 100px #00a67c, 0 0 150px #00a67c;
+        }
+        to {
+          text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff,
+            0 0 20px #00a67c, 0 0 35px #00a67c, 0 0 40px #00a67c,
+            0 0 50px #00a67c, 0 0 75px #00a67c;
+        }
+      }
+      @keyframes contentRightKeyframes {
+        from {
+          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+            0 0 40px #00a67c, 0 0 70px #00a67c, 0 0 80px #00a67c,
+            0 0 100px #00a67c, 0 0 150px #00a67c;
+        }
+        to {
+          text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff,
+            0 0 20px #00a67c, 0 0 35px #00a67c, 0 0 40px #00a67c,
+            0 0 50px #00a67c, 0 0 75px #00a67c;
+        }
       }
     }
   }

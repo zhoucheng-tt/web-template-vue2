@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package api.billingrule.v1;
+
+option go_package = "vine-billing-rule-rpc/api/billingrule/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.billingrule.v1";
+
+service Rule {
+	rpc CreateRule (CreateRuleRequest) returns (CreateRuleReply);
+	rpc UpdateRule (UpdateRuleRequest) returns (UpdateRuleReply);
+	rpc DeleteRule (DeleteRuleRequest) returns (DeleteRuleReply);
+	rpc GetRule (GetRuleRequest) returns (GetRuleReply);
+	rpc ListRule (ListRuleRequest) returns (ListRuleReply);
+	rpc Charge (ChargeRequest) returns (ChargeReply);
+}
+
+message CreateRuleRequest {}
+message CreateRuleReply {}
+
+message UpdateRuleRequest {}
+message UpdateRuleReply {}
+
+message DeleteRuleRequest {}
+message DeleteRuleReply {}
+
+message GetRuleRequest {}
+message GetRuleReply {}
+
+message ListRuleRequest {}
+message ListRuleReply {}
+
+message ChargeRequest {
+	string beginTime = 1;
+	string endTime = 2;
+	string ruleId = 3;
+}
+message ChargeReply {
+	double fee = 1;
+}

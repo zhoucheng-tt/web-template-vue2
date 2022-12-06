@@ -1,3 +1,10 @@
+<!--
+ * @Description: 
+ * @Author: zhoucheng
+ * @Github: https://github.com/zhoucheng-tt
+ * @Date: 2022-10-10 10:09:50
+ * @LastEditors: zhoucheng
+-->
 <template>
   <div id="app">
     <router-view />
@@ -26,6 +33,8 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
+  // filter: progid:DXImageTransform.Microsoft.BasicImage(graysale=1);
+  // -webkit-filter: grayscale(100%);
 }
 #app {
   width: 100%;

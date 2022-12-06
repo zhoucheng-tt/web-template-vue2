@@ -1,14 +1,5 @@
-<!--
- * @Description: 
- * @Author: zhoucheng
- * @Github: https://github.com/zhoucheng-tt
- * @Date: 2022-10-10 10:09:50
- * @LastEditors: zhoucheng
--->
 <template>
-  <div class='mainbody'>
-
-  </div>
+  <div class=''></div>
 </template>
 
 <script>
@@ -34,10 +25,17 @@ export default {
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
+    document.addEventListener('keydown', e => this.onKeydown(e))
+    document.addEventListener('keyup', (e) => this.onKeyUp(e))
   },
   // 方法集合
   methods: {
-
+    onKeyDown (e) {
+      console.log(e)
+    },
+    onKeyUp (e) {
+      console.log(e)
+    }
   },
   beforeCreate () { }, // 生命周期 - 创建之前
   beforeMount () { }, // 生命周期 - 挂载之前
@@ -50,9 +48,4 @@ export default {
 </script>
 <style lang='scss' scoped>
 //@import url(); 引入公共css类
-.mainbody {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-}
 </style>
