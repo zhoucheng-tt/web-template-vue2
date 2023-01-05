@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: zhoucheng
+ * @Github: https://github.com/zhoucheng-tt
+ * @Date: 2022-10-10 10:09:50
+ * @LastEditors: zhoucheng
+ */
 const path = require('path')
 
 function resolve (dir) {
@@ -17,7 +24,7 @@ module.exports = {
         }
       },
       '/flv/': {
-        target: 'http://192.168.1.169:10000/',
+        // target: 'http://36.133.182.60:8005/', // 奇隆大桥
         changeOrigin: true,
         ws: true,
         pathRewrite: {
