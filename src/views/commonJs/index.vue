@@ -217,7 +217,6 @@ export default {
               that.functionEightData.daytemp = res.data.forecasts[0].casts[0].daytemp
               that.functionEightData.dayweather = res.data.forecasts[0].casts[0].dayweather
               that.functionEightData.nightweather = res.data.forecasts[0].casts[0].nightweather
-
             })
           }
         })

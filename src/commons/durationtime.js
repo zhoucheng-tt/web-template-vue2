@@ -7,7 +7,7 @@
  */
 
 import moment from "moment"
-export default function parkStopTime (currentTime,lastTime) {
+export default function parkStopTime (currentTime, lastTime) {
   // 分钟为单位 秒直接截取掉
   let lastTimeMinFmt = lastTime.split(":")[0] + ":" + lastTime.split(":")[1]
   let currentTimeMinFmt = currentTime.split(":")[0] + ":" + currentTime.split(":")[1]
@@ -26,6 +26,7 @@ export default function parkStopTime (currentTime,lastTime) {
   days === 0 ? days = '' : days += '天'
   hours === 0 ? hours = '' : hours += '小时'
   minutes === 0 ? minutes = '0分钟' : minutes += '分钟'
+
   // 返回值拼接
   parkStopTime = years + months + days + hours + minutes
   return parkStopTime

@@ -23,14 +23,14 @@ module.exports = {
           '^/api': '/'
         }
       },
-      '/flv/': {
-        // target: 'http://36.133.182.60:8005/', // 奇隆大桥
-        changeOrigin: true,
-        ws: true,
-        pathRewrite: {
-          '^/flv': '/'
-        }
-      },
+      // '/flv/': {
+      //   // target: 'http://36.133.182.60:8005/', // 奇隆大桥
+      //   changeOrigin: true,
+      //   ws: true,
+      //   pathRewrite: {
+      //     '^/flv': '/'
+      //   }
+      // },
     }
   },
   configureWebpack: {

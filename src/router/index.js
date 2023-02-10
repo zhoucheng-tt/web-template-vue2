@@ -104,12 +104,6 @@ const routes = [
         meta: { name: "css-动画样例", icon: "", type: "list" }
       },
       {
-        path: "/hoverCat",
-        name: "hoverCat",
-        component: () => import("@/views/css/hoverCat/index.vue"),
-        meta: { name: "css-悬浮猫头", icon: "", type: "list" }
-      },
-      {
         path: "/textEffect",
         name: "textEffect",
         component: () => import("@/views/css/textEffect/index.vue"),
