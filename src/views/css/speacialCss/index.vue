@@ -20,11 +20,11 @@
         </div>
       </el-row>
       <el-row class="item">
-        <div class="lineMiddle">
-          <span class="itemTitle">毛玻璃</span>
-          <div class="lineOneMiddle">
-
-          </div>
+        <span class="itemTitle">毛玻璃</span>
+        <div class="lineOneMiddle">
+          <img :src="require('@/assets/css/pic.jpeg')"
+               alt="">
+          <div class="lineOneMiddle-div"></div>
         </div>
       </el-row>
       <el-row class="item">
@@ -121,6 +121,28 @@ export default {
       }
     }
     .lineOneMiddle {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border: 1px solid #000;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      .lineOneMiddle-div {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        /* 主要内容 */
+        background: rgba(0, 0, 0, 0.5);
+        /* 模糊大小就是靠的blur这个函数中的数值大小 */
+        backdrop-filter: blur(10px);
+      }
     }
   }
 }

@@ -25,7 +25,7 @@
     </el-row>
     <el-row class="lineTwo">
       <el-row class="item">
-        <div>{{lineOneRight.startNumber}}</div>
+        <div class="item-contentLeft">{{lineTwoLeft.startNumber}}</div>
       </el-row>
       <el-row class="item">
       </el-row>
@@ -38,16 +38,15 @@
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
-
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: {},
   data () {
     // 这里存放数据
     return {
-      lineOneRight: {
+      lineTwoLeft: {
         startNumber: 0,
-        endNumber: 1100,
+        endNumber: 520,
         speed: 10
       }
     };
@@ -57,21 +56,20 @@ export default {
   // 监控data中的数据变化
   watch: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created () {
-
-  },
+  created () { },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.dynamicNumber(this.lineOneRight.startNumber, this.lineOneRight.endNumber, this.lineOneRight.speed);
+    this.dynamicNumber(this.lineTwoLeft.startNumber, this.lineTwoLeft.endNumber, this.lineTwoLeft.speed);
   },
   // 方法集合
   methods: {
+    // 第二行左侧数字更新
     dynamicNumber (startNumber, endNumber, speed) {
       if (endNumber > 0) {
         let that = this
         var timeTask = setInterval(function () {
           startNumber++;
-          that.lineOneRight.startNumber = startNumber
+          that.lineTwoLeft.startNumber = startNumber
           if (startNumber === endNumber) {
             clearInterval(timeTask);
           }
@@ -196,6 +194,11 @@ export default {
       justify-content: center;
       align-items: center;
       border: 1px solid black;
+      .item-contentLeft {
+        font-size: 32px;
+        color: #ffffff;
+        letter-spacing: 5px;
+      }
     }
   }
 }
