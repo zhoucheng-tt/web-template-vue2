@@ -7,28 +7,12 @@
 -->
 <template>
   <div class='mainbody'>
-    <el-row class="lineOne">
-      <el-row class="item">
-        <span class="itemTitle">棱形横幅</span>
-        <div class="lineOneLeft">
-          <div class="lineOneLeftItem"
-               v-for="(item,index) in lineOneLeftList"
-               :key="index">
-            <img :src=item.img
-                 alt="">
-          </div>
-        </div>
-      </el-row>
-      <el-row class="item">
-        <span class="itemTitle">毛玻璃</span>
-        <div class="lineOneMiddle">
-          <img :src="require('@/assets/css/pic.jpeg')"
-               alt="">
-          <div class="lineOneMiddle-div"></div>
-        </div>
-      </el-row>
-      <el-row class="item">
-      </el-row>
+    <el-row class="contentItem"
+            v-for="(item,index) in contentList"
+            :key="index">
+      <!-- is 接收的需要是个变量 -->
+      <component :is="item.sequence"
+                 :contentName="item.contentName"></component>
     </el-row>
   </div>
 </template>
@@ -36,17 +20,16 @@
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
-
+import { commonName } from './commons/compImpRegUse'
 export default {
   // import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: commonName(),
   data () {
     // 这里存放数据
     return {
-      lineOneLeftList: [
-        { id: 1, img: require("@/assets/css/pic.jpeg") },
-        { id: 2, img: require("@/assets/css/pic.jpeg") },
-        { id: 3, img: require("@/assets/css/pic.jpeg") },
+      contentList: [
+        { sequence: 'first', contentName: '棱形横幅' },
+        { sequence: 'second', contentName: '毛玻璃' }
       ]
     };
   },
@@ -80,70 +63,15 @@ export default {
 .mainbody {
   width: 100%;
   height: 100%;
-  .lineOne {
-    width: 100%;
-    height: 32%;
-    display: flex;
-    .item {
-      width: 32%;
-      height: 100%;
-      margin-left: 1%;
-      margin-top: 1%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid black;
-      position: relative;
-      .itemTitle {
-        position: absolute;
-        left: 0;
-        top: 0;
-      }
-    }
-    .lineOneLeft {
-      width: 90%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .lineOneLeftItem {
-        clip-path: polygon(0 0, 75% 0, 100% 100%, 25% 100%);
-        margin: 0 -15px;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .lineOneLeftItem:nth-child(1) {
-        clip-path: polygon(0 0, 75% 0, 100% 100%, 0% 100%);
-      }
-      .lineOneLeftItem:nth-last-child(1) {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 25% 100%);
-      }
-    }
-    .lineOneMiddle {
-      width: 90%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      border: 1px solid #000;
-      img {
-        width: 100%;
-        height: 100%;
-      }
-      .lineOneMiddle-div {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        right: 0;
-        z-index: 9999;
-        /* 主要内容 */
-        background: rgba(0, 0, 0, 0.5);
-        /* 模糊大小就是靠的blur这个函数中的数值大小 */
-        backdrop-filter: blur(10px);
-      }
-    }
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  .contentItem {
+    width: 32%;
+    height: 33vh;
+    margin: 1vh 0.6%;
+    padding: 0.5%;
+    border: 1px solid black;
   }
 }
 </style>

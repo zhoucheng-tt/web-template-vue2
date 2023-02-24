@@ -9,7 +9,7 @@
   <div class='mainbody'>
     <div class="title">{{ contentName }} </div>
     <div class="content">
-
+      <div class="loading"></div>
     </div>
   </div>
 </template>
@@ -17,6 +17,8 @@
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
+
+
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: {},
@@ -79,6 +81,36 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    .loading {
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      position: relative;
+      font-size: 20px;
+      animation: loadingKeyframes 1s infinite linear;
+    }
+    @keyframes loadingKeyframes {
+      0% {
+        box-shadow: -3em 2em 0 0.5em #4158d0, 0 2em 0 0 #4158d0,
+          3em 2em 0 -0.5em #4158d0;
+      }
+      25% {
+        box-shadow: -3em 2em 0 0 #4158d0, 0 2em 0 -0.5em #4158d0,
+          3em 2em 0 0 #4158d0;
+      }
+      50% {
+        box-shadow: -3em 2em 0 -0.5em #4158d0, 0 2em 0 0 #4158d0,
+          3em 2em 0 0.5em #4158d0;
+      }
+      75% {
+        box-shadow: -3em 2em 0 0 #4158d0, 0 2em 0 0.5em #4158d0,
+          3em 2em 0 0 #4158d0;
+      }
+      100% {
+        box-shadow: -3em 2em 0 0.5em #4158d0, 0 2em 0 0 #4158d0,
+          3em 2em 0 -0.5em #4158d0;
+      }
+    }
   }
 }
 </style>

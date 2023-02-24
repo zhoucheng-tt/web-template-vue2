@@ -1,38 +1,34 @@
 <!--
- * @Description: 动画样例
+ * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2022-10-10 15:47:29
+ * @Date: 2023-02-24 14:41:58
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-    <el-row class="contentItem"
-            v-for="(item,index) in contentList"
-            :key="index">
-      <!-- is 接收的需要是个变量 -->
-      <component :is="item.sequence"
-                 :contentName="item.contentName"></component>
-    </el-row>
+    <div class="title">{{ contentName }} </div>
+    <div class="content">
+      <div class="item"></div>
+    </div>
   </div>
 </template>
 
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
-import { commonName } from './commons/compImpRegUse'
 export default {
   // import引入的组件需要注入到对象中才能使用
-  components: commonName(),
+  components: {},
+  props: {
+    contentName () {
+      String
+    }
+  },
   data () {
     // 这里存放数据
     return {
-      contentList: [
-        { sequence: 'first', contentName: '颜色变换' },
-        { sequence: 'second', contentName: '平移变色' },
-        { sequence: 'third', contentName: '日食' },
-        { sequence: 'fourth', contentName: '悬浮可爱猫头' },
-      ]
+
     };
   },
   // 监听属性 类似于data概念
@@ -65,15 +61,53 @@ export default {
 .mainbody {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  .contentItem {
-    width: 32%;
-    height: 33vh;
-    margin: 1vh 0.6%;
-    padding: 0.5%;
-    border: 1px solid black;
+  overflow: hidden;
+  .title {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 2px;
+  }
+  .content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .item {
+      width: 100%;
+      height: 100%;
+      background: red;
+      animation: itemKeyframes 20s infinite;
+      -webkit-animation: itemKeyframes 5s infinite;
+    }
+    @keyframes itemKeyframes {
+      0% {
+        background-color: red;
+      }
+      50% {
+        background-color: pink;
+      }
+      100% {
+        background-color: red;
+      }
+    }
+    @-webkit-keyframes itemKeyframes {
+      0% {
+        background-color: red;
+      }
+      50% {
+        background-color: pinkred;
+      }
+      100% {
+        background-color: red;
+      }
+    }
   }
 }
 </style>

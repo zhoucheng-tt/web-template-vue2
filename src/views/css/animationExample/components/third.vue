@@ -2,14 +2,16 @@
  * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2023-02-24 14:42:26
+ * @Date: 2023-02-24 14:41:58
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
     <div class="title">{{ contentName }} </div>
     <div class="content">
-
+      <div class="item">
+        <div class="item-in"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -79,6 +81,58 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
+    .item {
+      width: 100px;
+      height: 100px;
+      border-radius: 100px;
+      position: absolute;
+      z-index: 2;
+      left: 140px;
+      -webkit-animation: lineOneRightAmi 5s linear infinite;
+    }
+    @keyframes lineOneRightAmi {
+      0% {
+        transform: rotate(0deg);
+        box-shadow: 0px 0px 10px #fff;
+      }
+      50% {
+        transform: rotate(180deg);
+        box-shadow: 0px 0px 45px #fff;
+      }
+      100% {
+        transform: rotate(360deg);
+
+        box-shadow: 0px 0px 10px #fff;
+      }
+    }
+    @-webkit-keyframes lineOneRightAmi {
+      0% {
+        transform: rotate(0deg);
+        box-shadow: 0px 0px 10px #fff;
+      }
+      50% {
+        transform: rotate(180deg);
+        box-shadow: 0px 0px 45px #fff;
+      }
+      100% {
+        transform: rotate(360deg);
+        box-shadow: 0px 0px 10px #fff;
+      }
+    }
+    .item-in {
+      width: 10px;
+      height: 10px;
+      border: 4px solid #ddd;
+      border-radius: 20px;
+      left: 45px;
+      top: 5px;
+      position: absolute;
+      z-index: 2;
+      overflow: hidden;
+      background-color: #ddd;
+      box-shadow: 0px 0px 5px #fff;
+    }
   }
 }
 </style>

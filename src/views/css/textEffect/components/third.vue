@@ -2,14 +2,15 @@
  * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2023-02-24 14:42:26
+ * @Date: 2023-02-24 14:41:58
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
     <div class="title">{{ contentName }} </div>
     <div class="content">
-
+      <span class="text"
+            type="button">人间会一如平常</span>
     </div>
   </div>
 </template>
@@ -79,6 +80,46 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    .text {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      color: #00a67c;
+      transition: all 1s ease;
+      -webkit-transition: all 1s ease;
+    }
+    .text:hover {
+      color: lightpink;
+      animation: texKeyframes 1.5s ease infinite alternate;
+      -webkit-animation: texKeyframes 1.5s ease infinite alternate;
+    }
+    @-webkit-keyframes texKeyframes {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+          0 0 40px #00a67c, 0 0 70px #00a67c, 0 0 80px #00a67c,
+          0 0 100px #00a67c, 0 0 150px #00a67c;
+      }
+      to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff,
+          0 0 20px #00a67c, 0 0 35px #00a67c, 0 0 40px #00a67c, 0 0 50px #00a67c,
+          0 0 75px #00a67c;
+      }
+    }
+    @keyframes texKeyframes {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+          0 0 40px #00a67c, 0 0 70px #00a67c, 0 0 80px #00a67c,
+          0 0 100px #00a67c, 0 0 150px #00a67c;
+      }
+      to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff,
+          0 0 20px #00a67c, 0 0 35px #00a67c, 0 0 40px #00a67c, 0 0 50px #00a67c,
+          0 0 75px #00a67c;
+      }
+    }
   }
 }
 </style>

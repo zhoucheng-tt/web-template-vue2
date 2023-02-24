@@ -2,14 +2,16 @@
  * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2023-02-24 14:42:26
+ * @Date: 2023-02-24 14:41:58
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
     <div class="title">{{ contentName }} </div>
     <div class="content">
-
+      <div class="loading">
+        <span>努力加载中.....</span>
+      </div>
     </div>
   </div>
 </template>
@@ -79,6 +81,52 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    .loading {
+      width: 200px;
+      height: 200px;
+      box-sizing: border-box;
+      border-radius: 50%;
+      border-top: 10px solid #4158d0;
+      position: relative;
+      animation: loadingKeyframes 2s linear infinite;
+    }
+    .loading::before,
+    .loading::after {
+      content: '';
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      left: 0;
+      top: -10px;
+      box-sizing: border-box;
+      border-radius: 50%;
+    }
+    .loading::before {
+      border-top: 10px solid #fbc2eb;
+      transform: rotate(120deg);
+    }
+    .loading::after {
+      border-top: 10px solid #a6c1ee;
+      transform: rotate(240deg);
+    }
+    .loading span {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      text-align: center;
+      line-height: 200px;
+      animation: fifthLoadingOut 2s linear infinite;
+    }
+    @keyframes loadingKeyframes {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    @keyframes fifthLoadingOut {
+      to {
+        transform: rotate(-360deg);
+      }
+    }
   }
 }
 </style>
