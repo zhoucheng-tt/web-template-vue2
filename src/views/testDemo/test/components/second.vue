@@ -1,20 +1,16 @@
 <!--
- * @Description: css文字效果
+ * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2022-11-20 17:49:36
+ * @Date: 2023-02-24 14:42:26
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-    <el-row class="lineOne">
-      <el-row class="item">
-      </el-row>
-      <el-row class="item">
-      </el-row>
-      <el-row class="item">
-      </el-row>
-    </el-row>
+    <div class="title">{{ contentName }} </div>
+    <div class="content">
+
+    </div>
   </div>
 </template>
 
@@ -22,9 +18,15 @@
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
 
+
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: {},
+  props: {
+    contentName () {
+      String
+    }
+  },
   data () {
     // 这里存放数据
     return {
@@ -61,20 +63,21 @@ export default {
 .mainbody {
   width: 100%;
   height: 100%;
-  .lineOne {
+  overflow: hidden;
+  .title {
     width: 100%;
-    height: 32%;
+    height: 10%;
     display: flex;
-    .item {
-      width: 32%;
-      height: 100%;
-      margin-left: 1%;
-      margin-top: 1%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid black;
-    }
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 2px;
+  }
+  .content {
+    width: 100%;
+    height: 90%;
   }
 }
 </style>
