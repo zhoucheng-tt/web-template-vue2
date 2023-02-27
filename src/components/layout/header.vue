@@ -46,7 +46,7 @@ export default {
   width: 100%;
   height: 60px;
   line-height: 60px;
-  background-image: linear-gradient(to top, #a6c1ee 0%, #fbc2eb 100%);
+  background-image: linear-gradient(to bottom, #a6c1ee 0%, #fbc2eb 100%);
   position: relative;
   .box {
     width: 100%;

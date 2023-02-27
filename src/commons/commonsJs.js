@@ -144,109 +144,108 @@ export default {
     return nameData
   },
 
+
+
   /**
-   * @name: 将时间分钟格式化成小时、天 
-   * @description: 只控制到30天
-   * @param {type} number、String 
-   * @eq 3000分钟
-   * @return {type} String
+   * @description: 查询当前一周
+   * @return {String} 
    */
-  minuteTimeFormat (time) {
-    if (time === undefined || time === 0) {
-      time = 0 + '分钟'
-    }
-    else if (time > 0 && time < 60) {
-      time = time + '分钟'
-    }
-    else if (time >= 60 && time < 1440) {
-      if (time % 60 === 0) {
-        time = parseInt(time / 60) + '小时'
+  queryCurrentWeek () {
+    const targetday_milliseconds = new Date().getTime() - 1000 * 60 * 60 * 24 * 6;
+    var targetday = new Date();
+    targetday.setTime(targetday_milliseconds);
+    const startTime = targetday.dateFmt("yyyy-MM-dd");
+    const endTime = new Date().dateFmt("yyyy-MM-dd");
+    return { startTime, endTime }
+  },
+  /**
+   * @description: Momentjs判断间隔时长
+   * @return {boolean} 
+   */
+  intervalTimeJudge (startTime, endTime, timeInterval) {
+    const startTimeFmt = moment(startTime)
+    const endTimeFmt = moment(endTime)
+
+    const milliTime = moment.duration(endTimeFmt - startTimeFmt)._milliseconds
+    const intervalTime = milliTime / 1000 / 60 // 单位秒
+
+    if (timeInterval === undefined) {
+      return intervalTime
+    } else if (Number(timeInterval) === 3) {
+      if (intervalTime <= 4320) {
+        return true
       } else {
-        time = parseInt(time / 60) + '小时' + time % 60 + '分钟'
+        return false
+      }
+    } else if (Number(timeInterval) === 7) {
+      if (intervalTime <= 10080) {
+        return true
+      } else {
+        return false
       }
     }
-    else if (time >= 1440 && time <= 43200) {
-      if (time % 1440 === 0) {
-        time = parseInt(time / 1440) + '天'
-      }
-      else if (parseInt((time % 1440) % 60) === 0) {
-        time = parseInt(time / 1440) + '天' + parseInt((time % 1440) / 60) + '小时'
-      }
-      else if (parseInt((time % 1440) % 60) !== 0) {
-        if (parseInt((time % 1440) / 60) === 0) {
-          time = parseInt(time / 1440) + '天' + (time % 1440) % 60 + '分钟'
-        }
-        else if (parseInt((time % 1440) / 60) !== 0) {
-          time = parseInt(time / 1440) + '天' + parseInt((time % 1440) / 60) + '小时' + (time % 1440) % 60 + '分钟'
-        }
-      }
-    }
-    return time
   },
   /**
-   * @name: 日期转换时间格式化
-   * @description: 
-   * @param {type} {*} fmt 要处理成的日期格式 例: 'yyyy-MM-dd hh:mm:ss'
-   * @return {type} {*} date 要处理的日期，需Date类型
-   */
-  dateFormat (fmt, date) {
-    date = date ? date : new Date();
-    let o = {
-      "M+": date.getMonth() + 1, //月份
-      "d+": date.getDate(), //日
-      "h+": date.getHours() % 12 === 0 ? 12 : date.getHours() % 12, //小时
-      "H+": date.getHours(), //小时
-      "m+": date.getMinutes(), //分
-      "s+": date.getSeconds(), //秒
-      "q+": Math.floor((date.getMonth() + 3) / 3), //季度
-      "S": date.getMilliseconds() //毫秒
-    };
-    let week = {
-      "0": "/u65e5",
-      "1": "/u4e00",
-      "2": "/u4e8c",
-      "3": "/u4e09",
-      "4": "/u56db",
-      "5": "/u4e94",
-      "6": "/u516d"
-    };
-    if (/(y+)/.test(fmt)) {
-      fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
-    }
-    if (/(E+)/.test(fmt)) {
-      fmt = fmt.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "/u661f/u671f" : "/u5468") : "") + week[date.getDay() + ""]);
-    }
-    for (let k in o) {
-      if (new RegExp("(" + k + ")").test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-      }
-    }
-    return fmt;
-  },
-  /**
-   * @name: 时间间隔
-   * @description: moment实现时间间隔
-   * @param {type} {currentTime:string,当前时间, pastTime:string:过去的时间}
-   * @eq 格式化之后的时间 2020-01-01 00:00:00
-   * @return {type} {*}
-   */
-  timeInterval (pastTime, currentTime) {
-    let timeIntervalBack;
-    let m1 = moment(pastTime)
-    let m2 = moment(currentTime)
-    let years = moment.duration(m2 - m1)._data.years
-    let months = moment.duration(m2 - m1)._data.months
-    let days = moment.duration(m2 - m1)._data.days
-    let hours = moment.duration(m2 - m1)._data.hours
-    let minutes = moment.duration(m2 - m1)._data.minutes
-    let seconds = moment.duration(m2 - m1)._data.seconds
+  * @description: Momentjs机选 时间差
+  * @return {String} 
+  */
+  differTimeFmt (startTime, endTime) {
+    const startTimeFmt = moment(startTime)
+    const endTimeFmt = moment(endTime)
+    let years = moment.duration(endTimeFmt - startTimeFmt)._data.years
+    let months = moment.duration(endTimeFmt - startTimeFmt)._data.months
+    let days = moment.duration(endTimeFmt - startTimeFmt)._data.days
+    let hours = moment.duration(endTimeFmt - startTimeFmt)._data.hours
+    let minutes = moment.duration(endTimeFmt - startTimeFmt)._data.minutes
+    // let seconds = moment.duration(endTimeFmt - startTimeFmt)._data.seconds
+
     years === 0 ? years = '' : years += '年'
     months === 0 ? months = '' : months += '月'
     days === 0 ? days = '' : days += '天'
     hours === 0 ? hours = '' : hours += '小时'
-    minutes === 0 ? minutes = '' : minutes += '分钟'
-    seconds === 0 ? seconds = '' : seconds += '秒'
-    timeIntervalBack = years + months + days + hours + minutes + seconds
-    return timeIntervalBack
-  }
+    if (moment.duration(endTimeFmt - startTimeFmt)._milliseconds !== 0) {
+      minutes === 0 ? minutes = '' : minutes += '分钟'
+    } else {
+      minutes = '0分钟'
+    }
+
+    const parkStopTime = years + months + days + hours + minutes
+    return parkStopTime
+  },
+  /**
+   * @description: 将时间分钟格式化成小时、天 
+   * @return {String} 
+   */
+  timeMinToFmt (minutes) {
+    let parkDuration
+    if (minutes === undefined) {
+      parkDuration = `${0}分钟`
+    } else if (minutes >= 0 && minutes < 60) {
+      parkDuration = `${minutes}分钟`
+    } else if (minutes >= 60 && minutes < 1440) {
+      if (parseInt(minutes % 60) === 0) {
+        parkDuration = `${parseInt(minutes / 60)}小时`
+      } else {
+        parkDuration = `${parseInt(minutes / 60)}小时
+                      ${parseInt(minutes % 60)}分钟`
+      }
+    } else if (minutes >= 1440) {
+      const day = parseInt(minutes / 1440)
+      const hour = parseInt((minutes % 1440) / 60)
+      const minute = parseInt(minutes % 1440) % 60
+      if (hour === 0 && minute === 0) {
+        parkDuration = `${day}天`
+      }
+      if (hour === 0 && minute !== 0) {
+        parkDuration = `${day}天 ${minute}分钟`
+      }
+      if (hour !== 0 && minute === 0) {
+        parkDuration = `${day}天 ${hour}小时`
+      }
+      if (hour !== 0 && minute !== 0) {
+        parkDuration = `${day}天 ${hour}小时 ${minute}分钟`
+      }
+    }
+    return parkDuration
+  },
 }

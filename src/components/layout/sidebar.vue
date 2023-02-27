@@ -120,7 +120,7 @@ export default {
   .tac {
     width: 100%;
     height: 100%;
-    background: #a6c1ee;
+    background: #fbc2eb;
   }
 }
 </style>
