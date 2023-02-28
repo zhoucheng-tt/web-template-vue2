@@ -1,5 +1,5 @@
 <!--
- * @Description: 公共方法 commonJs
+ * @Description: 表格类
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
  * @Date: 2021-12-06 16:07:54
@@ -28,9 +28,8 @@ export default {
     // 这里存放数据
     return {
       contentList: [
-        { sequence: 'commonJs', contentName: 'commonJs' },
-        { sequence: 'first', contentName: '时间相关' },
-        { sequence: 'second', contentName: '正则相关' },
+        { sequence: 'first', contentName: '表格实现单选' },
+        { sequence: 'second', contentName: '' },
       ]
     };
   },

@@ -9,10 +9,8 @@ import moment from "moment" // 使用时间间隔引入
 
 export default {
   /**
-   * @name: 去除空格
    * @description: 去除空格
-   * @param {type} {*}
-   * @return {type} {*}
+   * @return {string} 
    */
   removeBlankSpace (string, type) {
     // 去除字符串内所有的空格：
@@ -38,93 +36,91 @@ export default {
       return removedString
     }
   },
+
   /**
-   * @name: 车牌号校验
-   * @description: 车牌号校验
-   * @param {type} string
-   * @return {type}  string
-   */
-  plateNumberVerify (plateNumber) {
-    var xreg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DF]$)|([DF][A-HJ-NP-Z0-9][0-9]{4}$))/;
-    var creg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳]{1}$/;
-    if (plateNumber.length == 7) {
-      if (creg.test(plateNumber)) {
-        return plateNumber
-      }
-    } else if (plateNumber.length == 8) {
-      if (xreg.test(plateNumber)) {
-        return plateNumber
-      }
-    } else {
-      return false;
-    }
-  },
-  /**
-   * @name: 手机号脱敏
-   * @description: 将手机号中间四位变成*
-   * @param {type} String
-   * @eq 138****5621
+   * @description:  手机号脱敏 将手机号中间四位变成*
    * @return {type} String
    */
-  phoneNumberDesensitizate (phoneNumber) {
+  phoneNumberDes (phoneNumber) {
     const phoneNumberData = phoneNumber.slice(0, 3) + "****" + phoneNumber.slice(phoneNumber.length - 4);
     // const phoneNumberData = phoneNumber.substring(0, 3) + "****" + phoneNumber.substring(phoneNumber.length - 4);
     // const phoneNumberData = phoneNumber.replace(/(\d{3})\d*(\d{4})/, "$1****$2"); 
     return phoneNumberData
   },
   /**
-   * @name: 手机号校验
-   * @description: phoneNumber 要验证的手机号
-   * @param {type} {*}
-   * @return {type} {*}
-   */
-  phoneNumberVerify (phoneNumber) {
-    if (!(/^1[3456789]\d{9}$/.test(phoneNumber))) {
-      return false;
-    }
-    return true;
-  },
-  /**
- * @name: 身份证脱敏
- * @description: 将身份证中间四位变成*
- * @param {type} String
- * @eq  5123****5645
- * @return {type} String
- */
-  idcardDesensitizate (idcard) {
-    const idcardData = idcard.replace(/^(.{4})(?:\w+)(.{4})$/, "$1****$2");
-    // const idcardData = idcard.slice(0, 4) + "****" + idcard.slice(idcard.length - 4);
-    return idcardData
-  },
-  /**
-   * @name: 身份证验证
-   * @description: idcard 需要验证的身份证号
-   * @param {type} {*}
-   * @return {type} {*}
-   */
-  idcardVerify (idcard) {
-    if (!(/(^\d{15}&)|(^\d{18})|(^\d{17}(\d|X|x)$)/.test(idcard))) {
-      return false;
-    }
-    return true;
-  },
-  /**
-   * @name: 邮箱脱敏
-   * @description: 将邮箱中间四位变成*
-   * @param {type} String
-   * @eq 738560****@qq.com
-   * @return {type} String
-   */
-  emailDesensitizate (email) {
+  * @description:邮箱脱敏 将身份证中间四位变成*
+  * @return {type} String
+  */
+  emailDes (email) {
     let str = email.split("@");
     const emailData = str[0].substr(0, str[0].length - 3) + "*****" + str[1].substr(2);
     return emailData
   },
   /**
-   * @name: 邮箱验证
-   * @description: 
-   * @param {type} {*}
-   * @return {type} {*}
+   * @description:身份证脱敏 将身份证中间四位变成*
+   * @return {type} String
+   */
+  idcardDes (idcard) {
+    const idcardData = idcard.replace(/^(.{4})(?:\w+)(.{4})$/, "$1****$2");
+    // const idcardData = idcard.slice(0, 4) + "****" + idcard.slice(idcard.length - 4);
+    return idcardData
+  },
+  /**
+   * @description:姓名脱敏 将姓变成*
+   * @return {type} String
+   */
+  nameDes (name) {
+    const nameData = "*" + name.charAt(name.length - 1);
+    return nameData
+  },
+
+  /**
+    * @description: 数字字母校验
+    * @return {boolean}  
+    */
+  englishNumberVerify (str) {
+    const patrn = /^[0-9a-zA-Z_]*$/;
+    //const patrn = /^[0-9]*$/im; // 纯数字
+    if (!patrn.test(str)) {
+      return false;
+    }
+    return true;
+  },
+  /**
+    * @description: 车牌号校验
+    * @return {boolean}  
+    */
+  plateNumberVerify (plateNumber) {
+    var creg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳]{1}$/;
+    var xreg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DF]$)|([DF][A-HJ-NP-Z0-9][0-9]{4}$))/;
+    if (plateNumber.length == 7) {
+      if (creg.test(plateNumber)) {
+        return true
+      } else {
+        return false
+      }
+    } else if (plateNumber.length == 8) {
+      if (xreg.test(plateNumber)) {
+        return true
+      } else {
+        return false;
+      }
+    }
+  },
+  /**
+    * @description: 手机号校验
+    * @return {boolean} 
+    */
+  phoneNumberVerify (phoneNumber) {
+    const patrn = /^1[3|4|5|6|7|8|9][0-9]{9}$/im;
+    if (!patrn.test(phoneNumber)) {
+      return false;
+    }
+    return true;
+  },
+  /**
+   * @description: 邮箱验证
+   * @return {boolean} 
    */
   emailVerify (email) {
     if (!(/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test(email))) {
@@ -133,15 +129,15 @@ export default {
     return true;
   },
   /**
- * @name: 姓名脱敏
- * @description: 将姓变成*
- * @param {type} String
- * @eq *成成
- * @return {type} String
- */
-  nameDesensitizate (name) {
-    const nameData = "*" + name.charAt(name.length - 1);
-    return nameData
+    * @description: 身份证验证
+    * @return {boolean}
+    */
+  idcardVerify (idcard) {
+    const patrn = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/im;
+    if (!patrn.test(idcard)) {
+      return false;
+    }
+    return true;
   },
 
 

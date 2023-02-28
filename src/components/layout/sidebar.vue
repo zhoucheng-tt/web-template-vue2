@@ -43,6 +43,13 @@ export default {
           children: []
         },
         {
+          code: "8",
+          name: "饿了么组件",
+          children: [
+            { code: "8-1", name: "表格类", routeName: "elTable" },
+          ]
+        },
+        {
           code: "4",
           name: "HighCharts",
           children: [
@@ -73,13 +80,7 @@ export default {
             { code: "7-1", name: "百度地图", routeName: "baiduMap" },
           ]
         },
-        {
-          code: "8",
-          name: "饿了么组件封装",
-          children: [
-            { code: "8-1", name: "动态表单", routeName: "dynamicForm" },
-          ]
-        },
+
         {
           code: "9",
           name: "登陆页设计",

@@ -126,11 +126,11 @@ const routes = [
         }
       },
       {
-        path: "/dynamicForm",
-        name: "dynamicForm",
-        component: () => import("@/views/element/dynamicForm/index.vue"),
+        path: "/elTable",
+        name: "elTable",
+        component: () => import("@/views/element/elTable/index.vue"),
         meta: {
-          name: "饿了么组件-动态表单",
+          name: "饿了么组件-表格类",
           icon: "",
           type: "list"
         }

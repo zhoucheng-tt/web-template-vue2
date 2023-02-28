@@ -1,5 +1,5 @@
 <!--
- * @Description: 
+ * @Description: 时间相关
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
  * @Date: 2023-02-24 14:41:58
@@ -15,8 +15,8 @@
       </div>
       <div class="lineItem">
         <div class="titlein">时间格式化</div>
-        <div class="label">未格式化： {{date}}</div>
-        <div class="label">格式化后： {{dateFmt}} || {{dateFmtVal}}</div>
+        <div class="label">未格式化:{{date}}</div>
+        <div class="label">格式化后:{{dateFmt}} || {{dateFmtVal}}</div>
       </div>
       <div class="lineItem">
         <div class="titlein">分钟转天、小时</div>
@@ -149,14 +149,9 @@ export default {
       item.valueFmt = $commonsJs.intervalTimeJudge(item.startTime, item.endTime, item.interval)
     })
     this.currentWeek = $commonsJs.queryCurrentWeek()
-
-
-    this.query()
   },
   // 方法集合
   methods: {
-    query () {
-    }
   },
   beforeCreate () { }, // 生命周期 - 创建之前
   beforeMount () { }, // 生命周期 - 挂载之前
@@ -188,6 +183,7 @@ export default {
   .content {
     width: 100%;
     height: 90%;
+    padding-bottom: 10px;
     .lineItem {
       width: 100%;
       margin: 10px auto;

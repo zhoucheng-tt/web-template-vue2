@@ -1,15 +1,19 @@
 <!--
- * @Description: 
+ * @Description: 正则校验
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2023-02-24 14:41:58
+ * @Date: 2023-02-24 14:42:26
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
     <div class="title">{{ contentName }} </div>
     <div class="content">
-
+      <div class="lineItem">
+        <div class="titlein"></div>
+        <div class="label">
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -36,17 +40,13 @@ export default {
   // 监控data中的数据变化
   watch: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created () {
-
-  },
+  created () { },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
 
   },
   // 方法集合
-  methods: {
-
-  },
+  methods: {},
   beforeCreate () { }, // 生命周期 - 创建之前
   beforeMount () { }, // 生命周期 - 挂载之前
   beforeUpdate () { }, // 生命周期 - 更新之前
@@ -65,20 +65,36 @@ export default {
   .title {
     width: 100%;
     height: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 18px;
     font-weight: 500;
     color: #333333;
     letter-spacing: 2px;
+    padding: 0.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .content {
     width: 100%;
     height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-bottom: 10px;
+    .lineItem {
+      width: 100%;
+      margin: 10px auto;
+      display: flex;
+      .titlein {
+        width: 15%;
+        font-weight: 600;
+        margin-left: 10px;
+        padding: 0 10px;
+        border: 1px dashed rgb(26, 18, 18);
+      }
+      .label {
+        margin-left: 10px;
+        padding: 0 10px;
+        border: 1px solid rgb(26, 18, 18);
+      }
+    }
   }
 }
 </style>

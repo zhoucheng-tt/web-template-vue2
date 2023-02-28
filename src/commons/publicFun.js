@@ -4,7 +4,7 @@
  * @Author: 郭云展
  * @Date: 2020-08-21 13:35:12
  * @LastEditors: zhoucheng
- * @LastEditTime: 2021-09-18 11:36:03
+ * @LastEditTime: 2023-02-27 22:47:59
  */
 export default {
 
@@ -13,28 +13,6 @@ export default {
     return Object.prototype.toString.call(o).match(/ ([^\]]+)/i)[1].toLowerCase();
   },
 
-  // 深拷贝 ⬇⬇⬇
-  clone (o) {
-    let clone = (o) => {
-      let type = this.typeOf(o);
-      if (['number', 'string', 'boolean', 'null', 'undefined', 'regexp'].indexOf(type) > -1) {
-        return o;
-      } else if (type === 'array') {
-        let t = [];
-        for (let i = 0, l = o.length; i < l; i++) {
-          t.push(clone(o[i]));
-        }
-        return t;
-      } else {
-        let t = {};
-        for (let k in o) {
-          t[k] = clone(o[k]);
-        }
-        return t;
-      }
-    };
-    return clone(o);
-  },
   // 测试数值是否在范围内 ⬇⬇⬇
   testRange (item) {
     if (item.referenceValue) {
@@ -142,53 +120,6 @@ export default {
     return [null, undefined, ''].includes(value)
   },
 
-  // 监测是否全数字字符 ⬇⬇⬇
-  isNumberValue (str) {
-    var patrn = /^[0-9]*$/im;
-
-    if (!patrn.test(str)) {// 如果不是纯数字返回false
-      return false;
-    }
-    return true;
-  },
-  // 监测身份证格式是否正确 ⬇⬇⬇
-  isIdCardValue (str) {
-    var patrn = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/im;
-
-    if (!patrn.test(str)) {// 如果正确返回false
-      return false;
-    }
-    return true;
-  },
-  // 监测手机号格式是否正确 ⬇⬇⬇
-  isPhoneNoValue (str) {
-    var patrn = /^1[3|4|5|7|8][0-9]{9}$/im;
-
-    if (!patrn.test(str)) {// 如果正确返回false
-      return false;
-    }
-    return true;
-  },
-  // 监测手机号格式是否正确 ⬇⬇⬇
-  verifyTel (rule, value, callback) {
-    var patrn = /^1[3|4|5|6|7|8][0-9]{9}$/im;
-
-    if (!patrn.test(value)) {// 如果正确返回false
-      callback("请输入正确的手机号")
-    }
-    callback()
-  },
-
-  // 监测只能输入英文和数字 ⬇⬇⬇
-  isEnglishNumber (str) {
-    var patrn = /^[0-9a-zA-Z_]*$/;
-
-    if (!patrn.test(str)) {// 如果正确返回false
-      return false;
-    }
-    return true;
-  },
-
   // 将数组转换为json ⬇⬇⬇
   // @params list   传入的list
   // @params key    数组中对应的key
@@ -197,6 +128,29 @@ export default {
     let json = {}
     list.forEach(item => json[item[key]] = item[value])
     return json
+  },
+
+  // 深拷贝 ⬇⬇⬇
+  clone (o) {
+    let clone = (o) => {
+      let type = this.typeOf(o);
+      if (['number', 'string', 'boolean', 'null', 'undefined', 'regexp'].indexOf(type) > -1) {
+        return o;
+      } else if (type === 'array') {
+        let t = [];
+        for (let i = 0, l = o.length; i < l; i++) {
+          t.push(clone(o[i]));
+        }
+        return t;
+      } else {
+        let t = {};
+        for (let k in o) {
+          t[k] = clone(o[k]);
+        }
+        return t;
+      }
+    };
+    return clone(o);
   },
   // 将数组转换为json ⬇⬇⬇
   // @params list   传入的list
