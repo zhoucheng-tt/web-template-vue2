@@ -9,9 +9,29 @@ import Vue from 'vue'
 import App from './App.vue'
 import ElementUI from 'element-ui'
 import '@/styles/index.scss'
-import router from "./router/index";
-import store from './store'
 Vue.use(ElementUI)
+import store from './store'
+
+import router from "./router/index";
+
+import axios from 'axios'
+Vue.prototype.$axios = axios
+
+// 时间
+import '@/commons/date.js'
+// 通用json
+import commonData from '@/data/commonData.json'
+Vue.prototype.$commonData = commonData
+import commonColor from '@/data/commonColor.json'
+Vue.prototype.$commonColor = commonColor
+
+// 使用echarts npm install --save echarts
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
+// 使用深拷贝
+import deepClone from '@/commons/deepClone.js'
+Vue.prototype.$deepClone = deepClone
 
 import VideoPlayer from 'vue-video-player'
 import 'videojs-flash'
@@ -20,25 +40,6 @@ Vue.use(VideoPlayer)
 
 import flvjs from 'flv.js'
 Vue.use(flvjs)
-
-// 全局使用axios
-import axios from 'axios'
-Vue.prototype.$axios = axios
-
-// gsap
-// import gsap from 'gsap'
-// Vue.prototype.$gsap = gsap
-
-// 使用深拷贝
-import deepClone from '@/commons/deepClone.js'
-Vue.prototype.$deepClone = deepClone
-
-// 全局js
-import './commons/date.js'
-
-// 使用echarts npm install --save echarts
-import echarts from 'echarts'
-Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
 

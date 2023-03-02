@@ -1,16 +1,17 @@
 <!--
- * @Description: 双层饼图 加背景 加图标 DoublePieBackIcon
+ * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2021-12-31 13:37:27
+ * @Date: 2023-02-24 14:41:58
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-    <el-row class="item"
-            id="oneCharts"
-            :options="oneChartsOptions">
-    </el-row>
+    <div class="title">{{ contentName }} </div>
+    <div class="content"
+         id="pieChartFourth"
+         :options="pieChartOptions">
+    </div>
   </div>
 </template>
 
@@ -23,12 +24,22 @@ export default {
   mixins: [resize],
   //import引入的组件需要注入到对象中才能使用
   components: {},
+  props: {
+    contentName () {
+      String
+    },
+    dataList () {
+      Array
+    },
+    colorList () {
+      Array
+    }
+  },
   data () {
     //这里存放数据
     return {
       chart: null,
-      oneCharts: "",
-      oneChartsOptions: {},
+      pieChartOptions: {},
     };
   },
   //监听属性 类似于data概念
@@ -41,7 +52,7 @@ export default {
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.queryOneCharts()
+    this.initCharts()
   },
   beforeCreate () { }, //生命周期 - 创建之前
   beforeMount () { }, //生命周期 - 挂载之前
@@ -52,8 +63,39 @@ export default {
   activated () { }, //如果页面有keep-alive缓存功能，这个函数会触发
   //方法集合
   methods: {
-    queryOneCharts () {
-      this.chart = echarts.init(document.getElementById('oneCharts'));
+    initCharts () {
+      this.chart = echarts.init(document.getElementById('pieChartFourth'));
+      let dataListOut = [
+        {
+          value: 40,
+          name: 'a',
+          itemStyle: {
+            color: '#0995F7',
+          },
+        },
+        {
+          value: 60,
+          name: 'b',
+          itemStyle: {
+            color: '#23F1F3',
+          },
+        }
+      ]
+      let dataListIn = [{
+        value: 40,
+        name: 'a',
+        itemStyle: {
+          color: '#0995F7',
+          opacity: 0.4,
+        },
+      }, {
+        value: 60,
+        name: 'b',
+        itemStyle: {
+          color: '#23F1F3',
+          opacity: 0.4,
+        },
+      }]
       this.chart.setOption({
         title: {
           text: '',
@@ -88,7 +130,7 @@ export default {
         series: [
           {
             type: 'pie',
-            radius: ['65%', '75%'],
+            radius: ['62%', '72%'],
             center: ['50%', '50%'],
             hoverAnimation: false,
             z: 10,
@@ -107,52 +149,20 @@ export default {
               fontSize: 16,
               lineHeight: 30,
             },
-            data: [
-              {
-                value: 40,
-                name: 'a',
-                itemStyle: {
-                  color: '#0995F7',
-                },
-              },
-              {
-                value: 60,
-                name: 'b',
-                itemStyle: {
-                  color: '#23F1F3',
-                },
-              }
-            ],
+            data: dataListOut,
             labelLine: {
               show: false,
             },
           },
           {
             type: 'pie',
-            radius: ['54%', '64%'],
+            radius: ['52%', '62%'],
             center: ['50%', '50%'],
             hoverAnimation: false,
             label: {
               show: false,
             },
-            data: [
-              {
-                value: 40,
-                name: 'a',
-                itemStyle: {
-                  color: '#0995F7',
-                  opacity: 0.4,
-                },
-              },
-              {
-                value: 60,
-                name: 'b',
-                itemStyle: {
-                  color: '#23F1F3',
-                  opacity: 0.4,
-                },
-              }
-            ],
+            data: dataListIn,
             labelLine: {
               show: false,
             },
@@ -168,9 +178,24 @@ export default {
 .mainbody {
   width: 100%;
   height: 100%;
-  .item {
+  overflow: hidden;
+  .title {
     width: 100%;
-    height: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 2px;
+  }
+  .content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

@@ -1,16 +1,17 @@
 <!--
- * @Description: 有间隙的饼图 intervalPieChart
+ * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2022-01-20 10:34:43
+ * @Date: 2023-02-24 14:41:58
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-    <el-row class="item"
-            id="intervalPieChart"
-            :options="intervalPieChartOptions">
-    </el-row>
+    <div class="title">{{ contentName }} </div>
+    <div class="content"
+         id="pieChartThird"
+         :options="pieChartOptions">
+    </div>
   </div>
 </template>
 
@@ -23,12 +24,22 @@ export default {
   mixins: [resize],
   //import引入的组件需要注入到对象中才能使用
   components: {},
+  props: {
+    contentName () {
+      String
+    },
+    dataList () {
+      Array
+    },
+    colorList () {
+      Array
+    }
+  },
   data () {
     //这里存放数据
     return {
       chart: null,
-      intervalPieChart: "",
-      intervalPieChartOptions: {}
+      pieChartOptions: {}
     };
   },
   //监听属性 类似于data概念
@@ -41,7 +52,7 @@ export default {
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.queryIntervalPieChart()
+    this.initCharts()
   },
   beforeCreate () { }, //生命周期 - 创建之前
   beforeMount () { }, //生命周期 - 挂载之前
@@ -52,63 +63,41 @@ export default {
   activated () { }, //如果页面有keep-alive缓存功能，这个函数会触发
   //方法集合
   methods: {
-    queryIntervalPieChart () {
-      this.chart = echarts.init(document.getElementById('intervalPieChart'));
-      var ydata = [{
-        name: '运营管控指标',
-        value: 18
-      },
-      {
-        name: '电网调度主数据',
-        value: 16
-      },
-      {
-        name: '电网运行数据',
-        value: 15
-      },
-      {
-        name: '早汇报数据',
-        value: 14
-      },
-      {
-        name: '主站数据',
-        value: 10
-      },
-      {
-        name: '其他',
-        value: 7.9
-      },
-      ];
-      var color = ["#40a9ff", "#f759ab", "#597ef7", "#36cfc9", "#9254de", "#73d13d"]
-      var xdata = ['运营管控指标', "电网调度主数据", "电网运行数据", "早汇报数据", '主站数据', '其他'];
+    initCharts () {
+      this.chart = echarts.init(document.getElementById('pieChartThird'));
+      let datalist = this.dataList;
+      let color = this.colorList
+      let legendData = []
+      this.dataList.forEach(item => {
+        legendData.push(item.name)
+      })
       this.chart.setOption({
         backgroundColor: "",
         color: color,
         legend: {
-          orient: "vartical",
+          data: legendData,
+          orient: 'vertical',
+          right: '5%',
+          top: '13%',
+          itemWidth: 10,
+          itemHeight: 10,
+          itemGap: 30,
           textStyle: {
-            color: "#9FACBC",
+            color: '#',
+            fontSize: 16,
           },
-          x: "left",
-          top: "center",
-          left: "50%",
-          bottom: "0%",
-          data: xdata,
-          itemWidth: 8,
-          itemHeight: 8,
-          itemGap: 16,
         },
         series: [{
           type: 'pie',
           clockwise: false, //饼图的扇区是否是顺时针排布
           minAngle: 2, //最小的扇区角度（0 ~ 360）
-          radius: ["25%", "45%"],
-          center: ["30%", "50%"],
+          radius: ["45%", "65%"],
+          center: ["50%", "50%"],
           avoidLabelOverlap: false,
           itemStyle: { //图形样式
             normal: {
-              borderColor: '#1A213E',
-              borderWidth: 6,
+              borderColor: '#333333',
+              borderWidth: 3,
             },
           },
           label: {
@@ -139,13 +128,13 @@ export default {
               }
             }
           },
-          data: ydata
+          data: datalist
         }]
       });
 
       setTimeout(function () {
         this.chart.on('mouseover', function (params) {
-          if (params.name == ydata[0].name) {
+          if (params.name == datalist[0].name) {
             this.chart.dispatchAction({
               type: 'highlight',
               seriesIndex: 0,
@@ -183,9 +172,24 @@ export default {
 .mainbody {
   width: 100%;
   height: 100%;
-  .item {
+  overflow: hidden;
+  .title {
     width: 100%;
-    height: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 2px;
+  }
+  .content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

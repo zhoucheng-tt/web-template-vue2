@@ -1,36 +1,34 @@
 <!--
- * @Description: 表格类
+ * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2021-12-06 16:07:54
+ * @Date: 2023-02-24 14:42:26
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-    <el-row class="contentItem"
-            v-for="(item,index) in contentList"
-            :key="index">
-      <!-- is 接收的需要是个变量 -->
-      <component :is="item.sequence"
-                 :contentName="item.contentName"></component>
-    </el-row>
+    <div class="title">{{ contentName }} </div>
+    <div class="content">
+
+    </div>
   </div>
 </template>
 
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
-import { commonName } from './commons/compImpRegUse'
 export default {
   // import引入的组件需要注入到对象中才能使用
-  components: commonName(),
+  components: {},
+  props: {
+    contentName () {
+      String
+    }
+  },
   data () {
     // 这里存放数据
     return {
-      contentList: [
-        { sequence: 'first', contentName: '实现单选' },
-        { sequence: 'second', contentName: '开关' },
-      ]
+
     };
   },
   // 监听属性 类似于data概念
@@ -63,15 +61,24 @@ export default {
 .mainbody {
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  .contentItem {
-    width: 98.4%;
-    margin: 1vh 0.6%;
-    padding: 1%;
-    border: 1px dashed black;
+  overflow: hidden;
+  .title {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 2px;
+  }
+  .content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

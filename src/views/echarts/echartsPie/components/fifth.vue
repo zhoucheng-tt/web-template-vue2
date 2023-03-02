@@ -1,16 +1,19 @@
 <!--
- * @Description: echarts 半环形饼图 IncompletePie
+ * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2021-12-31 15:06:46
+ * @Date: 2023-02-24 14:41:58
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-    <el-row class="item"
-            id="twoCharts"
-            :options="twoChartsOptions">
-    </el-row>
+    <div class="title">{{ contentName }} </div>
+    <div class="content">
+      <el-row class="item"
+              id="pieChartFifth"
+              :options="pieChartOptions">
+      </el-row>
+    </div>
   </div>
 </template>
 
@@ -23,12 +26,22 @@ export default {
   mixins: [resize],
   //import引入的组件需要注入到对象中才能使用
   components: {},
+  props: {
+    contentName () {
+      String
+    },
+    dataList () {
+      Array
+    },
+    colorList () {
+      Array
+    }
+  },
   data () {
     //这里存放数据
     return {
       chart: null,
-      oneCharts: "",
-      oneChartsOptions: {},
+      pieChartOptions: {},
     };
   },
   //监听属性 类似于data概念
@@ -41,7 +54,7 @@ export default {
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.queryOneCharts()
+    this.initCharts()
   },
   beforeCreate () { }, //生命周期 - 创建之前
   beforeMount () { }, //生命周期 - 挂载之前
@@ -52,13 +65,9 @@ export default {
   activated () { }, //如果页面有keep-alive缓存功能，这个函数会触发
   //方法集合
   methods: {
-    queryOneCharts () {
-      this.chart = echarts.init(document.getElementById('twoCharts'));
-      let legendData = [{ name: '其他' }, { name: '现金' }, { name: '微信' }, { name: '支付宝' }]
-      let color = ['#FF8700', '#ffc300', '#00e473', '#009DFF'];
-      let nameList = ['其他', '现金', '微信', '支付宝'];
-      let valueList = [250, 200, 150, 100];
-      let datalist = [{ name: '其他', value: 250 }, { name: '现金', value: 200 }, { name: '微信', value: 150 }, { name: '支付宝', value: 100 }]
+    initCharts () {
+      this.chart = echarts.init(document.getElementById('pieChartFifth'));
+      let color = this.colorList;
       let colorList = [
         {
           type: 'linear',
@@ -68,8 +77,7 @@ export default {
               color: 'rgba(50, 111, 220, 1)',
             },
           ],
-        },
-        {
+        }, {
           type: 'linear',
           colorStops: [
             {
@@ -77,8 +85,7 @@ export default {
               color: 'rgba(8, 246, 228, 1)',
             },
           ],
-        },
-        {
+        }, {
           type: 'linear',
           colorStops: [
             {
@@ -86,11 +93,9 @@ export default {
               color: 'rgba(178, 221, 157, 1)',
             },
           ],
-        },
-        {
+        }, {
           type: 'linear',
           colorStops: [
-
             {
               offset: 1,
               color: 'rgba(123, 86, 241, 1)',
@@ -98,7 +103,16 @@ export default {
           ],
         },
       ];
+      let datalist = this.dataList
       let chartData = [];
+      let legendData = []
+      let nameList = []
+      let valueList = []
+      datalist.forEach(item => {
+        legendData.push({ name: item.name })
+        nameList.push(item.name);
+        valueList.push(item.value);
+      })
       nameList.map((item, idx) => {
         chartData.push({
           name: item,
@@ -138,8 +152,7 @@ export default {
             {
               value: v.value,
               name: v.name,
-            },
-            {
+            }, {
               value: sum - v.value,
               name: '',
               itemStyle: {
@@ -191,11 +204,11 @@ export default {
               interval: 0,
               inside: false,
               textStyle: {
-                color: '#000000',
+                color: '#',
                 fontSize: 12,
                 rich: {
                   name: {
-                    color: '#000000',
+                    color: '#',
                     fontSize: 12,
                     paddingLeft: 20,
                   },
@@ -206,56 +219,53 @@ export default {
             data: lineYAxis,
           },
         ],
-        legend: [
-          {
-            data: legendData.slice(0, 2),
-            orient: 'vertical',
-            align: "left",
-            top: '40%',
-            left: '10%',
-            type: 'plain',
-            textStyle: {
-              color: '#000000',
-              fontSize: 12
-            },
-            icon: 'circle',
-            itemGap: 30,
-            itemWidth: 10,
-            formatter: (name) => {
-              var datas = datalist;
-              let total = 0;
-              datas.map(item => {
-                total += (item.value - 0)
-              })
-              let valueIndex = datas.map(item => item.name).indexOf(name);
-              return name + "  " + ((datas[valueIndex].value / total) * 100).toFixed(2) + "%";
-            },
+        legend: [{
+          data: legendData.slice(0, 2),
+          orient: 'vertical',
+          align: "left",
+          top: '40%',
+          left: '5%',
+          type: 'plain',
+          textStyle: {
+            color: '#000000',
+            fontSize: 12
           },
-          {
-            data: legendData.slice(2, 4),
-            orient: 'vertical',
-            align: "left",
-            top: '40%',
-            left: '30%',
-            type: 'plain',
-            textStyle: {
-              color: '#000000',
-              fontSize: 12
-            },
-            icon: 'circle',
-            itemGap: 30,
-            itemWidth: 10,
-            formatter: (name) => {
-              var datas = datalist;
-              let total = 0;
-              datas.map(item => {
-                total += (item.value - 0)
-              })
-              let valueIndex = datas.map(item => item.name).indexOf(name);
-              return name + "  " + ((datas[valueIndex].value / total) * 100).toFixed(2) + "%";
-            },
-          }
-        ],
+          icon: 'circle',
+          itemGap: 30,
+          itemWidth: 10,
+          formatter: (name) => {
+            var datas = datalist;
+            let total = 0;
+            datas.map(item => {
+              total += (item.value - 0)
+            })
+            let valueIndex = datas.map(item => item.name).indexOf(name);
+            return name + "  " + ((datas[valueIndex].value / total) * 100).toFixed(2) + "%";
+          },
+        }, {
+          data: legendData.slice(2, 4),
+          orient: 'vertical',
+          align: "left",
+          top: '40%',
+          left: '26%',
+          type: 'plain',
+          textStyle: {
+            color: '#000000',
+            fontSize: 12
+          },
+          icon: 'circle',
+          itemGap: 30,
+          itemWidth: 10,
+          formatter: (name) => {
+            var datas = datalist;
+            let total = 0;
+            datas.map(item => {
+              total += (item.value - 0)
+            })
+            let valueIndex = datas.map(item => item.name).indexOf(name);
+            return name + "  " + ((datas[valueIndex].value / total) * 100).toFixed(2) + "%";
+          },
+        }],
         xAxis: [
           {
             show: false,
@@ -267,14 +277,34 @@ export default {
   }
 }
 </script>
+
 <style lang='scss' scoped>
 //@import url(); 引入公共css类
 .mainbody {
   width: 100%;
   height: 100%;
-  .item {
+  overflow: hidden;
+  .title {
     width: 100%;
-    height: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 2px;
+  }
+  .content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .item {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>

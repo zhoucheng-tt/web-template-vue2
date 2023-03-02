@@ -1,16 +1,17 @@
 <!--
- * @Description: echarts 渐变锥形柱状图 GradientPictorialBar
+ * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2021-12-31 10:14:17
+ * @Date: 2023-02-24 14:41:58
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-    <el-row class="item"
-            id="oneCharts"
-            :options="oneChartsOptions">
-    </el-row>
+    <div class="title">{{ contentName }} </div>
+    <div class="content"
+         id="columnChartFirst"
+         :options="columnChartOptions">
+    </div>
   </div>
 </template>
 
@@ -21,17 +22,19 @@ import resize from '@/components/mixins/resize'
 import * as echarts from 'echarts'
 export default {
   mixins: [resize],
-  // import引入的组件需要注入到对象中才能使用
   components: {},
+  props: {
+    contentName () {
+      String
+    },
+    dataList () { Array },
+    colorList () { Array }
+  },
   data () {
     // 这里存放数据
     return {
       chart: null,
-
-      oneCharts: "",
-      oneChartsOptions: {},
-      sevenDaysParkTimeData: [1, 2, 3, 4, 5, 6, 7],
-      sevenDaysParkTimeXz: ["10-01", "10-02", "10-03", "10-04", "10-05", "10-06", "10-07"],
+      columnChartOptions: {},
     };
   },
   // 监听属性 类似于data概念
@@ -39,18 +42,26 @@ export default {
   // 监控data中的数据变化
   watch: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created () { },
+  created () {
+
+  },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.queryOneCharts()
+    this.initCharts()
   },
   // 方法集合
   methods: {
-    queryOneCharts () {
-      this.chart = echarts.init(document.getElementById('oneCharts'));
+    initCharts () {
+      this.chart = echarts.init(document.getElementById('columnChartFirst'));
+      let xDataList = []
+      let yDataList = []
+      this.dataList.forEach(item => {
+        xDataList.push(item.name)
+        yDataList.push(item.value)
+      })
       this.chart.setOption({
         xAxis: {
-          data: this.sevenDaysParkTimeXz,
+          data: xDataList,
           axisTick: { show: false },
           axisLine: {
             show: true,
@@ -138,7 +149,7 @@ export default {
             },
             symbol:
               'path://M12.000,-0.000 C12.000,-0.000 16.074,60.121 22.731,60.121 C26.173,60.121 -3.234,60.121 0.511,60.121 C7.072,60.121 12.000,-0.000 12.000,-0.000 Z',
-            data: this.sevenDaysParkTimeData,
+            data: yDataList,
           }
         ],
         tooltip: {
@@ -167,9 +178,24 @@ export default {
 .mainbody {
   width: 100%;
   height: 100%;
-  .item {
+  overflow: hidden;
+  .title {
     width: 100%;
-    height: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 2px;
+  }
+  .content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

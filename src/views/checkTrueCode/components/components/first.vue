@@ -7,11 +7,22 @@
 -->
 <template>
   <div class='main'>
-    <div class="title">点击文字验证</div>
+    <div class="title">
+      <div class="titleLeft">
+        <img @click="produceHanzi"
+             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAELklEQVRYR+2YW2wUZRTH//9vtlCoF9IoIklT3PqgPGi326hoetuaGEhIr9SgCYkkgt2WGOQVCca+GavWdr0GjD4YhG3RB3hply1LQA1tEQIxEXapGI2pEkys9LIzx2ylYWfY6e5sF0oi+7hzzvl+3/9855xvhrjNf7zN+XAHcL4Z+n8o6JWTeYt++W25S596AIZy6TB+n3yo+Nchlk8vmIIVowdXU9c3Q1gDSilBlQwjgBAYFGDvdF58/4milqvZwDpOcXWsb5Uh8hmBqkwXFMhlCN8aX5LXNbRy/T+Z+iXsHAFWRXs3QGQPyLucLDJrK5DgUXdTsxPfjAEro8E3Ce50EtxsKxPTwCPH3U2jTmJkBJgWTnAMxDeGMEoa0xQ+LJQnCD4HYFkCyAC3RdwN3U7gMkpxRTTYrMD91sCJIgCxV5R6O1Jcfy7VwonqLoj9/CqB2kF341qncGkBvRe+ureAWpRgoalCBecMFzcdK24YymZRJz5zprgq1tsJwXYL3CVZGvdGHmwZc7JQtra2gE+f712ep2QUYP714DJhaJrXLqXZQszlZwtYdSHoB9ljVk/ePVrSZFL0ZkAlxzQBVseCT8WhZhRThtFB8plk9Zi/qCi8cv0fNxvKFrDy4oF11NXXIFy2EII4iBcG3Y03VLZT8OqRd5aFPduvOEpxRayvXolxAKB2g6NgEhobBlc1HHYKY7WvHf5wtVAPgegIlbbZ9seUZ7AyFnwewi9pGoUyDmhrB931kfnC1ZwOeKlLP8GZJi6QLSFP2yep4toXSbT3ZQAfX3O6omt8Nhd9r/aHQAUMOQywYBZo5uZD2ThQ2rbPCjlnH6yI9rUryE5DU75ctJaake46Be4DuDjF8dFBNA94/AdtiySVxIlpMlTS8td801o70vMigM9huTda2lhcKHVHPO2HZv/P6LIwX7hk/+qzPSvUJGMkrg8AQYTkroRdXMlE+HH/twsG6BsOdJHYZlaO/lBZ6weOiiSXqs3Gqj0TeAxx+T75DIpgwjC0onD51pQD4JaluPrkR/cpFT9DcoVp84LOgTL/DjtBbglgou+puHwB8lEznPxJw1XSX77VtgizBvQNBw4RMqB7xt4Lc3c8lQKJaQHoO4R8ydz0/7MWoCXk8c85MrMC9J3qaafw/WtQlwXST+F3BnAeYB4obgJ1BJIuG+YtiKAjVOZ/Pd1ZdwzoG+4uBtSPpjaRbhXLcwF3hzytb2TilgVgT5BkYybBrTYC+Rvg5nRpdTRJrIs8+VPXPQXj2i4ItxC4O2NQQUQnN4U9rRcz9nH64p4ceM2lziX5Y4s3KHCdUHwE77ecMkMEp6BwhIa2Z6DslZRvfulgHafYLuCas58WLp2aLCFUga70qxOFU6dPFL2W1feYeaU43Y5z/TxnCuYabMEuC043ckdBp4pZ7f8FE5psOI1g6fwAAAAASUVORK5CYII="
+             style="width:30px;height: 30px;"
+             alt="">
+      </div>
+      <div>点击文字验证</div>
+      <div class="titleRight">
+        <span @click="handleClose">X</span>
+      </div>
+    </div>
+    <!-- 文字 -->
     <div class="content">
       <div class="masking"
            @click="clickContent"></div>
-      <!-- 文字 -->
       <span :style="getStyle[0]">{{hanziList[0]}}</span>
       <span :style="getStyle[1]">{{hanziList[1]}}</span>
       <span :style="getStyle[2]">{{hanziList[2]}}</span>
@@ -23,8 +34,8 @@
       <span class="tip-text">{{hanziList[1]}}</span>
       <span class="tip-text">{{hanziList[2]}}</span>
       <span class="tip-text">{{hanziList[3]}}</span>
-      <div @click="confirm"
-           class="but">确认</div>
+      <div class="but"
+           @click="confirm">确认</div>
     </div>
   </div>
 </template>
@@ -118,7 +129,7 @@ export default {
   activated () { }, //如果页面有keep-alive缓存功能，这个函数会触发
   //方法集合
   methods: {
-    //  确认按钮点击
+    // 确认按钮点击
     confirm () {
       let ver = this.poitisTrue.includes(false) ? false : true
       if (this.poitisTrue.length === 4) {
@@ -167,7 +178,7 @@ export default {
       div.style.border = '1px solid #ffffff'
       this.$el.getElementsByClassName('content')[0].appendChild(div) // 需要考虑外面的class名称
     },
-    /**生成一个随机数**/
+    //生成一个随机数
     randNum (min, max) {
       return Math.floor(Math.random() * (max - min) + min);
     },
@@ -209,6 +220,10 @@ export default {
       })
       this.hanziPoitList = poit
     },
+    // 关闭
+    handleClose () {
+      this.$emit('close')
+    }
   },
 }
 </script>
@@ -225,18 +240,41 @@ export default {
   .title {
     width: 100%;
     height: 30px;
-    text-align: center;
     color: #333333;
     font-weight: 600;
     font-size: 16px;
     line-height: 29px;
     background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .titleLeft {
+      width: 30px;
+      height: 30px;
+      margin-left: 10px;
+      margin-top: 5px;
+      img:hover {
+        animation: rotation 1s linear infinite;
+      }
+      @keyframes rotation {
+        from {
+          -webkit-transform: rotate(0deg);
+        }
+        to {
+          -webkit-transform: rotate(180deg);
+        }
+      }
+    }
+    .titleRight {
+      margin-right: 10px;
+      cursor: pointer;
+    }
   }
   .content {
     position: relative;
     width: 100%;
     height: 200px;
-    background: url('../../assets/css/pic.jpeg');
+    background: url('~@/assets/css/pic.jpeg');
     background-size: 100% 100%;
     color: #0e71db;
     font-weight: 800;

@@ -1,73 +1,64 @@
 <!--
- * @Description: 渐变色线图 GradientLine
+ * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2021-12-30 17:47:13
+ * @Date: 2023-02-24 14:41:58
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-    <el-row class="item"
-            id="twoCharts"
-            :options="twoChartsOptions">
-    </el-row>
+    <div class="title">{{ contentName }} </div>
+    <div class="content"
+         id="lineChartFirst"
+         :options="lineChartsOptions">
+    </div>
   </div>
 </template>
 
 <script>
-//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-//例如：import 《组件名称》 from '《组件路径》';
+// 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
+// 例如：import 《组件名称》 from '《组件路径》';
 import resize from '@/components/mixins/resize'
 import * as echarts from 'echarts'
 export default {
   mixins: [resize],
-  //import引入的组件需要注入到对象中才能使用
   components: {},
+  props: {
+    contentName () { String },
+    dataList () { Array },
+    colorList () { Array }
+  },
   data () {
-    //这里存放数据
+    // 这里存放数据
     return {
       chart: null,
-      twoCharts: "",
-      twoChartsOptions: {},
+      lineChartsOptions: {},
     };
   },
-  //监听属性 类似于data概念
+  // 监听属性 类似于data概念
   computed: {},
-  //监控data中的数据变化
+  // 监控data中的数据变化
   watch: {},
-  //生命周期 - 创建完成（可以访问当前this实例）
+  // 生命周期 - 创建完成（可以访问当前this实例）
   created () {
 
   },
-  //生命周期 - 挂载完成（可以访问DOM元素）
+  // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.queryOneCharts()
+    this.initCharts()
   },
-  beforeCreate () { }, //生命周期 - 创建之前
-  beforeMount () { }, //生命周期 - 挂载之前
-  beforeUpdate () { }, //生命周期 - 更新之前
-  updated () { }, //生命周期 - 更新之后
-  beforeDestroy () { }, //生命周期 - 销毁之前
-  destroyed () { }, //生命周期 - 销毁完成
-  activated () { }, //如果页面有keep-alive缓存功能，这个函数会触发
-  //方法集合
+  // 方法集合
   methods: {
-    queryOneCharts () {
-      this.chart = echarts.init(document.getElementById('twoCharts'));
-      this.chart.getZr().on('click', params => {
-        let pointInPixel = [params.offsetX, params.offsetY]
-        console.log(this.chart.containPixel('grid', pointInPixel))
-        let pointInGrid = this.chart.convertFromPixel({ seriesIndex: 0 }, pointInPixel)
-        console.log(pointInGrid)
-        // x轴数据的索引值
-        // let yIndex = pointInGrid[1]
-        // var name = obj.y[yIndex]
-        //下面进行操作函数
-      })
+    initCharts () {
+      this.chart = echarts.init(document.getElementById('lineChartFirst'));
+      // this.chart.getZr().on('click', params => {
+      //   let pointInPixel = [params.offsetX, params.offsetY]
+      //   let pointInGrid = this.chart.convertFromPixel({ seriesIndex: 0 }, pointInPixel)
+      // })
       let xLabel = ['2021/02/01', '2021/02/05', '2021/02/10', '2021/02/15', '2021/02/20', '2021/02/25', '2021/02/30']
       let goToSchool = [15, 10, 15, 20, 15, 10, 15]
       let goOutSchool = [30, 20, 30, 40, 30, 20, 30]
-      let legendData = [{ name: '订单量' }, { name: '消费金额' }]
+      let legendData = [{ name: 'demo1' }, { name: 'demo2' }]
       this.chart.setOption({
         grid: {
           top: '10%',
@@ -169,7 +160,7 @@ export default {
           itemWidth: 10
         },
         series: [{
-          name: '订单量',
+          name: 'demo1',
           type: 'line',
           symbol: 'circle',
           showAllSymbol: true,
@@ -200,9 +191,8 @@ export default {
             show: true
           },
           data: goToSchool
-        },
-        {
-          name: '消费金额',
+        }, {
+          name: 'demo2',
           type: 'line',
           symbol: 'circle',
           showAllSymbol: true,
@@ -237,6 +227,13 @@ export default {
       })
     }
   },
+  beforeCreate () { }, // 生命周期 - 创建之前
+  beforeMount () { }, // 生命周期 - 挂载之前
+  beforeUpdate () { }, // 生命周期 - 更新之前
+  updated () { }, // 生命周期 - 更新之后
+  beforeDestroy () { }, // 生命周期 - 销毁之前
+  destroyed () { }, // 生命周期 - 销毁完成
+  activated () { }, // 如果页面有keep-alive缓存功能，这个函数会触发
 }
 </script>
 <style lang='scss' scoped>
@@ -244,9 +241,24 @@ export default {
 .mainbody {
   width: 100%;
   height: 100%;
-  .item {
+  overflow: hidden;
+  .title {
     width: 100%;
-    height: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 2px;
+  }
+  .content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

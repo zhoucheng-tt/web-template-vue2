@@ -1,30 +1,39 @@
 <!--
- * @Description: highcharts的3D饼图
+ * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2021-11-30 09:36:19
+ * @Date: 2023-02-24 14:41:58
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-    <el-row class="charts"
-            id="oneCharts"
-            :options="oneChartsOptions"></el-row>
+    <div class="title">{{ contentName }} </div>
+    <div class="content">
+      <div id="chart"
+           :options="chartOptions"></div>
+    </div>
   </div>
 </template>
 
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
-
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: {},
+  props: {
+    contentName () {
+      String
+    },
+    colorList () {
+      Array
+    }
+  },
   data () {
     // 这里存放数据
     return {
-      oneCharts: "",
-      oneChartsOptions: {}
+      chart: null,
+      chartOptions: {}
     };
   },
   // 监听属性 类似于data概念
@@ -32,15 +41,17 @@ export default {
   // 监控data中的数据变化
   watch: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created () { },
+  created () {
+
+  },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.queryOneCharts()
+    this.initChart()
   },
   // 方法集合
   methods: {
     // 初始化图表
-    queryOneCharts () {
+    initChart () {
       var each = window.Highcharts.each,
         round = Math.round,
         cos = Math.cos,
@@ -65,8 +76,7 @@ export default {
           z = 0;
         }
         each(series.data, function (point) {
-          var shapeArgs = point.shapeArgs,
-            angle;
+          var shapeArgs = point.shapeArgs, angle;
           point.shapeType = 'arc3d';
           var ran = point.options.h;
           shapeArgs.z = z;
@@ -89,20 +99,29 @@ export default {
           return ret;
         });
       }(window.Highcharts));
+      let dataList = [
+        { name: 'a', y: 1, h: 4 },
+        { name: 'b', y: 2, h: 6 },
+        { name: 'c', y: 3, h: 8 },
+        { name: 'd', y: 4, h: 10 },
+      ]
+      let colorList = this.colorList
+
       // 图标渲染
-      this.oneChartsOptions = {
+      this.chartOptions = {
         chart: {
           backgroundColor: "rgba(0,0,0,0)", // 设置背景颜色
           type: 'pie',
-          renderTo: "oneCharts",
-          plotBackgroundImage: require("@/assets/highcharts/BrowserPreview_tmp-2.gif"),
+          renderTo: "chart",
+          plotBackgroundImage: '',// 设置背景图
           options3d: {
             enabled: true, // 给饼图添加3d效果
-            alpha: 55, // 控制饼图的倾斜角度
+            alpha: 50, // 控制饼图的倾斜角度
           },
-          marginLeft: 100,
-          marginRight: 100,
-          marignTop: 100,
+          width: 400,
+          marginLeft: 20,
+          // marginRight: 100,
+          // marignTop: 100,
           // 显示饼图高低效果
           events: {
             load: function () {
@@ -131,7 +150,7 @@ export default {
             allowPointSelect: false, // 禁止点击效果
             cursor: 'pointer',  // 鼠标悬浮上去是小手
             depth: 25, // 饼图总体高度
-            innerSize: 70, // 中心距离的大小
+            innerSize: 120, // 中心距离的大小
             showInLegend: true, // 是否展示图例
             dataLabels: {
               enabled: false // 每项数据线是否展示
@@ -140,36 +159,25 @@ export default {
         },
         // 标题
         title: {
-          text: '3D饼图+背景图',
-          align: 'left',
+          text: '',
+          align: '',
           style: {
             color: "#333333",
           }
         },
-        // {
-        //        radialGradient: {
-        //            cx: 0.5,
-        //            cy: 0.3,
-        //            r: 0.7
-        //        },
-        //        stops: [
-        //            [0, RemainingColor1],
-        //            [1, RemainingColor2]
-        //        ]
-        //    }
         // 饼图色系
-        colors: ["#007AFF", "#E9C503", "#03D7E9"],
+        colors: colorList,
         // 图例
         legend: {
-          layout: "horizontal",
+          layout: "verticalAlign",
           align: "right",
-          verticalAlign: "top",
+          verticalAlign: "middle",
           // 给图例添加占比保留小数点后两位
           labelFormatter: function () {
             return this.name + " " + this.percentage.toFixed(2) + "%";
           },
           itemStyle: {
-            color: "#black",
+            color: "#333333",
             fontSize: "14px"
           },
           itemHoverStyle: {
@@ -180,14 +188,10 @@ export default {
         series: [{
           type: 'pie',
           name: '3D饼图数据',
-          data: [
-            { name: 'a', y: 30, h: 10 },
-            { name: 'b', y: 26, h: 6 },
-            { name: 'c', y: 12, h: 3 }
-          ]
+          data: dataList
         }]
       };
-      new window.Highcharts.chart(this.oneChartsOptions);
+      new window.Highcharts.chart(this.chartOptions);
     }
   },
   beforeCreate () { }, // 生命周期 - 创建之前
@@ -204,9 +208,24 @@ export default {
 .mainbody {
   width: 100%;
   height: 100%;
-  .charts {
+  overflow: hidden;
+  .title {
     width: 100%;
-    height: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 2px;
+  }
+  .content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
