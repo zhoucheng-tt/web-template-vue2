@@ -14,8 +14,14 @@ import store from './store'
 
 import router from "./router/index";
 
+import api from './axios/index'
+Vue.use(api)
+
 import axios from 'axios'
 Vue.prototype.$axios = axios
+
+import publicVar from './utils/publicVar'
+Vue.use(publicVar)
 
 // 时间
 import '@/commons/date.js'

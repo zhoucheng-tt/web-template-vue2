@@ -179,12 +179,17 @@ const routes = [
         component: () => import("@/views/test/index.vue"),
         meta: { name: "测试", icon: "", type: "list" }
       },
-
       {
         path: "/videoStream",
         name: "videoStream",
         component: () => import("@/views/videoStream/index.vue"),
-        meta: { name: "videoStream", icon: "", type: "list" }
+        meta: { name: "视频流", icon: "", type: "list" }
+      },
+      {
+        path: "/aixosExample",
+        name: "aixosExample",
+        component: () => import("@/views/aixosExample/index.vue"),
+        meta: { name: "接口样例", icon: "", type: "list" }
       },
     ]
   }

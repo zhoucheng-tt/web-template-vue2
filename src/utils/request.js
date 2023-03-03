@@ -1,5 +1,12 @@
+/*
+ * @Description: 
+ * @Author: zhoucheng
+ * @Github: https://github.com/zhoucheng-tt
+ * @Date: 2022-10-10 10:09:50
+ * @LastEditors: zhoucheng
+ */
 import axios from 'axios'
-import router from '../plugins/router'
+// import router from '../router'
 // import store from '@/store'
 
 const service = axios.create({
@@ -11,7 +18,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // config.headers['userToken'] = localStorage.getItem('userToken')
-    // config.headers['userToken'] = "b93e73243ad08d6443135ce198c59894"
+    config.headers['userToken'] = "8b9aecab0f143d04f563701da6f0b642"
     return config
   },
   error => {
@@ -22,11 +29,6 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-    if (res.resultCode === undefined) {
-      return res
-    } if (res.resultCode === '3004') {
-      router.push('/login');
-    }
     if (res.resultCode !== '2000') {
       return Promise.reject(res)
     } else {

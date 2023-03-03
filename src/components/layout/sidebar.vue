@@ -90,12 +90,10 @@ export default {
           ]
         },
         { code: "10", name: "验证码", routeName: "checkTrueCode" },
-        {
-          code: "11",
-          name: "视频流",
-          routeName: 'videoStream'
-        },
-        { code: "12", name: "测试页面", routeName: "test" },
+        { code: "11", name: "视频流", routeName: 'videoStream' },
+        { code: "12", name: "接口使用", routeName: 'aixosExample' },
+
+        { code: "1000", name: "测试页面", routeName: "test" },
       ]
     };
   },
