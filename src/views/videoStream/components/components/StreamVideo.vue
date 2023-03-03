@@ -138,7 +138,6 @@ export default {
             autoCleanupSourceBuffer: true //自动清除缓存
           },
         );
-        console.log(this.streamVideoUrl);
         this.flvPlayer.attachMediaElement(videoElement);
         if (that.flvPlayer) {
           if (that.streamVideoUrl !== "" && that.streamVideoUrl !== null) {

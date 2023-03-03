@@ -179,29 +179,12 @@ const routes = [
         component: () => import("@/views/test/index.vue"),
         meta: { name: "测试", icon: "", type: "list" }
       },
+
       {
-        path: "/hls",
-        name: "hls",
-        component: () => import("@/views/videoShow/hls/index.vue"),
-        meta: { name: "hls", icon: "", type: "list" }
-      },
-      {
-        path: "/rtmp",
-        name: "rtmp",
-        component: () => import("@/views/videoShow/rtmp/index.vue"),
-        meta: { name: "rtmp", icon: "", type: "list" }
-      },
-      {
-        path: "/websocket",
-        name: "websocket",
-        component: () => import("@/views/videoShow/websocket/index.vue"),
-        meta: { name: "websocket", icon: "", type: "list" }
-      },
-      {
-        path: "/flv",
-        name: "flv",
-        component: () => import("@/views/videoShow/flv/index.vue"),
-        meta: { name: "flv", icon: "", type: "list" }
+        path: "/videoStream",
+        name: "videoStream",
+        component: () => import("@/views/videoStream/index.vue"),
+        meta: { name: "videoStream", icon: "", type: "list" }
       },
     ]
   }

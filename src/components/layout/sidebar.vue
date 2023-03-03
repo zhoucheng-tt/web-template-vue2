@@ -93,12 +93,7 @@ export default {
         {
           code: "11",
           name: "视频流",
-          children: [
-            { code: "11-1", name: "websocket", routeName: "websocket" },
-            { code: "11-2", name: "hls", routeName: "hls" },
-            { code: "11-3", name: "rtmp", routeName: "rtmp" },
-            { code: "11-4", name: "flv", routeName: "flv" },
-          ]
+          routeName: 'videoStream'
         },
         { code: "12", name: "测试页面", routeName: "test" },
       ]

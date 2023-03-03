@@ -28,8 +28,10 @@ export default {
     // 这里存放数据
     return {
       contentList: [
-        { sequence: 'first', contentName: '棱形横幅' },
-        { sequence: 'second', contentName: '毛玻璃' }
+        { sequence: 'first', contentName: 'clip-path 棱形横幅' },
+        { sequence: 'second', contentName: 'backdrop-filter 毛玻璃' },
+        { sequence: 'third', contentName: '-webkit-mask-image 图片面罩' },
+        { sequence: 'fourth', contentName: '图片聚焦' },
       ]
     };
   },

@@ -79,6 +79,15 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: url('~@/assets/css/pic.jpeg');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center center;
+    transition: background 0.8s;
+  }
+  .content:hover {
+    background-size: auto 140%;
+    background-position: right center;
   }
 }
 </style>

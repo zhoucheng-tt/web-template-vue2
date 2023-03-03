@@ -2,14 +2,20 @@
  * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2023-02-24 14:41:58
+ * @Date: 2023-02-24 14:42:26
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
     <div class="title">{{ contentName }} </div>
     <div class="content">
-
+      <div style="display:flex;justify-content:center;align-items:center">
+        <el-button @click="handleClickButton"
+                   type="primary">切换视频流</el-button>
+      </div>
+      <StreamVideo style="height:80%"
+                   :streamType="streamType"
+                   :streamVideoUrl="src"></StreamVideo>
     </div>
   </div>
 </template>
@@ -17,9 +23,10 @@
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
+import StreamVideo from './components/StreamVideo'
 export default {
   // import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: { StreamVideo },
   props: {
     contentName () {
       String
@@ -28,7 +35,8 @@ export default {
   data () {
     // 这里存放数据
     return {
-
+      streamType: 'flvRtmp',
+      src: '/flv/live?app=live&stream=rtmpStream1'
     };
   },
   // 监听属性 类似于data概念
@@ -45,7 +53,9 @@ export default {
   },
   // 方法集合
   methods: {
-
+    handleClickButton () {
+      this.src = '/flv/live?app=live&stream=rtmpStream2'
+    }
   },
   beforeCreate () { }, // 生命周期 - 创建之前
   beforeMount () { }, // 生命周期 - 挂载之前
@@ -76,18 +86,6 @@ export default {
   .content {
     width: 100%;
     height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url('~@/assets/css/pic.jpeg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    -webkit-mask-image: linear-gradient(
-      90deg,
-      rgb(227, 227, 227),
-      90%,
-      transparent
-    );
   }
 }
 </style>

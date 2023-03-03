@@ -1,41 +1,38 @@
 <!--
- * @Description:视频流 rtmp
+ * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2022-04-06 09:14:46
+ * @Date: 2023-02-24 14:41:58
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-    <videoPlayer class="vjs-custom-skin videoPlayer"
-                 :options="playerOptions"></videoPlayer>
+    <div class="title">{{ contentName }} </div>
+    <div class="content">
+      <StreamVideo ref="hlsStreamVideo"
+                   :streamType="streamType"></StreamVideo>
+    </div>
   </div>
 </template>
 
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
-import 'video.js/dist/video-js.css'
-import { videoPlayer } from "vue-video-player";
-import "videojs-flash";
+import StreamVideo from './components/StreamVideo'
+
 export default {
   // import引入的组件需要注入到对象中才能使用
-  components: { videoPlayer },
+  components: { StreamVideo },
+  props: {
+    contentName () {
+      String
+    }
+  },
   data () {
     // 这里存放数据
     return {
-      playerOptions: {
-        height: "300",
-        sources: [
-          {
-            type: "rtmp/mp4",
-            src: "rtmp://192.168.1.245:1935/live/",
-          },
-        ],
-        techOrder: ["flash"],
-        autoplay: false,
-        controls: true,
-      },
+      streamType: "m3u8",
+      hls: "http://123.207.189.27:8005/hls/test_555.m3u8"
     };
   },
   // 监听属性 类似于data概念
@@ -43,12 +40,10 @@ export default {
   // 监控data中的数据变化
   watch: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created () {
-
-  },
+  created () { },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-
+    this.$refs.hlsStreamVideo.hlsStreamVideoOptions.sources[0].src = this.hls
   },
   // 方法集合
   methods: {
@@ -66,6 +61,26 @@ export default {
 <style lang='scss' scoped>
 //@import url(); 引入公共css类
 .mainbody {
-  width: 100% height;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  .title {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 2px;
+  }
+  .content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>

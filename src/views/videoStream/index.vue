@@ -1,34 +1,38 @@
 <!--
- * @Description: 
+ * @Description: s
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2023-02-24 14:41:58
+ * @Date: 2023-03-03 14:42:26
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
-    <div class="title">{{ contentName }} </div>
-    <div class="content">
-
-    </div>
+    <el-row class="contentItem"
+            v-for="(item,index) in contentList"
+            :key="index">
+      <!-- is 接收的需要是个变量 -->
+      <component :is="item.sequence"
+                 :contentName="item.contentName"></component>
+    </el-row>
   </div>
 </template>
 
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
+import { commonName } from './commons/compImpRegUse'
 export default {
   // import引入的组件需要注入到对象中才能使用
-  components: {},
-  props: {
-    contentName () {
-      String
-    }
-  },
+  components: commonName(),
   data () {
     // 这里存放数据
     return {
-
+      contentList: [
+        { sequence: 'first', contentName: 'websocket' },
+        { sequence: 'second', contentName: 'flv' },
+        { sequence: 'third', contentName: 'hls' },
+        { sequence: 'fourth', contentName: 'rtmp' },
+      ]
     };
   },
   // 监听属性 类似于data概念
@@ -61,33 +65,15 @@ export default {
 .mainbody {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  .title {
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    font-weight: 500;
-    color: #333333;
-    letter-spacing: 2px;
-  }
-  .content {
-    width: 100%;
-    height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url('~@/assets/css/pic.jpeg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    -webkit-mask-image: linear-gradient(
-      90deg,
-      rgb(227, 227, 227),
-      90%,
-      transparent
-    );
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  .contentItem {
+    width: 32%;
+    height: 33vh;
+    margin: 1vh 0.6%;
+    padding: 0.5%;
+    border: 1px solid black;
   }
 }
 </style>
