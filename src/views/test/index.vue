@@ -28,7 +28,7 @@ export default {
     // 这里存放数据
     return {
       contentList: [
-        { sequence: 'first', contentName: '组件1' }
+        { sequence: 'first', contentName: '1' }
       ]
     };
   },
