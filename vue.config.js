@@ -23,6 +23,14 @@ module.exports = {
           '^/api': '/'
         }
       },
+      '/nodeTest/': {
+        target: 'http://127.0.0.1:8081/',
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/nodeTest': '/'
+        }
+      },
       // '/flv/': {
       //   // target: 'http://36.133.182.60:8005/', // 奇隆大桥
       //   changeOrigin: true,

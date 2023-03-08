@@ -28,6 +28,8 @@ export default {
     // 这里存放数据
     return {
       contentList: [
+        { sequence: 'third', contentName: 'nodejs使用' },
+
         { sequence: 'first', contentName: '实现单选' },
         { sequence: 'second', contentName: '开关' },
       ]

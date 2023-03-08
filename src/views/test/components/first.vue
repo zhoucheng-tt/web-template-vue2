@@ -9,9 +9,7 @@
   <div class='mainbody'>
     <div class="title">{{ contentName }} </div>
     <div class="content">
-      <div style="width:100px;height:30px;background: red;word-break: break-all;">
-        mainbodycontent
-      </div>
+
     </div>
   </div>
 </template>
@@ -41,10 +39,14 @@ export default {
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-
+    this.query()
   },
   // 方法集合
-  methods: {},
+  methods: {
+    query () {
+
+    }
+  },
   beforeCreate () { }, // 生命周期 - 创建之前
   beforeMount () { }, // 生命周期 - 挂载之前
   beforeUpdate () { }, // 生命周期 - 更新之前
