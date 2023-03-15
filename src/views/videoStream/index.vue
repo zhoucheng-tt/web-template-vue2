@@ -29,9 +29,10 @@ export default {
     return {
       contentList: [
         { sequence: 'first', contentName: 'websocket' },
-        { sequence: 'second', contentName: 'flv' },
+        { sequence: 'second', contentName: 'flv rtmp' },
         { sequence: 'third', contentName: 'hls' },
-        { sequence: 'fourth', contentName: 'rtmp' },
+        { sequence: 'fourth', contentName: 'hls m3u8' },
+        { sequence: 'fifth', contentName: 'rtmp' },
       ]
     };
   },

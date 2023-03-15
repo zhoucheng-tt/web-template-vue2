@@ -13,9 +13,9 @@
         <el-button @click="handleClickButton"
                    type="primary">切换视频流</el-button>
       </div>
-      <StreamVideo style="height:80%"
-                   :streamType="streamType"
-                   :streamVideoUrl="src"></StreamVideo>
+      <flvRtmp style="height:80%"
+               :streamType="streamType"
+               :streamVideoUrl="streamVideoUrl"></flvRtmp>
     </div>
   </div>
 </template>
@@ -23,10 +23,10 @@
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
-import StreamVideo from './components/StreamVideo'
+import flvRtmp from './components/flvRtmp'
 export default {
   // import引入的组件需要注入到对象中才能使用
-  components: { StreamVideo },
+  components: { flvRtmp },
   props: {
     contentName () {
       String
@@ -36,7 +36,8 @@ export default {
     // 这里存放数据
     return {
       streamType: 'flvRtmp',
-      src: '/flv/live?app=live&stream=rtmpStream1'
+      // 测试流 需要转发 http://36.133.182.60:8005/live?app=live&stream=rtmpStream1
+      streamVideoUrl: '/flv/live?app=live&stream=rtmpStream1'
     };
   },
   // 监听属性 类似于data概念
@@ -54,7 +55,7 @@ export default {
   // 方法集合
   methods: {
     handleClickButton () {
-      this.src = '/flv/live?app=live&stream=rtmpStream2'
+      this.streamVideoUrl = '/flv/live?app=live&stream=rtmpStream2'
     }
   },
   beforeCreate () { }, // 生命周期 - 创建之前

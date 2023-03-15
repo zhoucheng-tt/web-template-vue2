@@ -10,7 +10,7 @@
     <div class="close"
          @click="close">x</div>
     <div class="top">
-      <div v-if="!data">{{  "正在获取信息..."}}</div>
+      <div v-if="!data">{{"正在获取信息..."}}</div>
       <div v-else
            class="content">
         <div>{{ data.latitude }}</div>

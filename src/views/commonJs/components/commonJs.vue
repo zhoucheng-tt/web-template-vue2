@@ -10,6 +10,15 @@
     <div class="title">{{ contentName }} </div>
     <div class="content">
       <div class="lineItem">
+        <div class="titlein">文字点击复制</div>
+        <div class="label">
+          <span id="copycode">我要复制一段文字</span>
+          <el-button class="button"
+                     type="primary"
+                     @click="handleClickCopy">复制</el-button>
+        </div>
+      </div>
+      <div class="lineItem">
         <div class="titlein">获取当前IP天气</div>
         <div class="label">
           <span class="span">{{weather.adcode}} {{weather.address}}</span>
@@ -98,6 +107,20 @@ export default {
   },
   // 方法集合
   methods: {
+    // 点击复制文字
+    handleClickCopy () {
+      const range = document.createRange(); // 创建range对象
+      range.selectNode(document.getElementById('copycode')); //获取复制内容的 id 选择器
+      const selection = window.getSelection();  //创建 selection对象
+      //如果页面已经有选取了的话，会自动删除这个选区，没有选区的话，会把这个选取加入选区
+      if (selection.rangeCount > 0) {
+        selection.removeAllRanges()
+      }
+      selection.addRange(range); // 将range对象添加到selection选区当中，会高亮文本块
+      document.execCommand('copy'); //复制选中的文字到剪贴板
+      this.$message.success('复制成功！')
+      selection.removeRange(range); // 移除选中的元素
+    },
     // 获取当前天气
     queryLineEight () {
       // 获取当前所在城市
@@ -181,6 +204,10 @@ export default {
         }
       }
     }
+  }
+  .button {
+    width: 80px;
+    margin: 5px 10px;
   }
 }
 </style>
