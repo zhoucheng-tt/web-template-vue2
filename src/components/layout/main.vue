@@ -105,7 +105,7 @@ body > .el-container {
   line-height: 320px;
 }
 
-// 内容页面加载
+// 内容页面加载 vue过渡
 .main-route-enter-active {
   animation: transitionAnimation 1s;
 }

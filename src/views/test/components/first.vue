@@ -43,7 +43,6 @@ export default {
   // 方法集合
   methods: {
     query () {
-
     }
   },
   beforeCreate () { }, // 生命周期 - 创建之前
