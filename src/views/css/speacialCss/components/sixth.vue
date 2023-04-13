@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2023-02-24 14:42:26
+ * @Date: 2023-02-24 17:15:02
  * @LastEditors: zhoucheng
 -->
 <template>
@@ -10,9 +10,6 @@
     <div class="title">{{ contentName }} </div>
     <div class="content">
       <div class="item">
-        <img :src="require('@/assets/css/pic.jpeg')"
-             alt="">
-        <div class="item-div"></div>
       </div>
     </div>
   </div>
@@ -45,11 +42,9 @@ export default {
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-
   },
   // 方法集合
   methods: {
-
   },
   beforeCreate () { }, // 生命周期 - 创建之前
   beforeMount () { }, // 生命周期 - 挂载之前
@@ -84,33 +79,34 @@ export default {
     justify-content: center;
     align-items: center;
     .item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 100%;
+      height: 100%;
       position: relative;
-      border: 1px solid #000;
-      img {
-        width: 100%;
-        height: 100%;
+      background: url('~@/assets/css/pic.jpeg') #0ff center/cover;
+      background-size: cover;
+      background-blend-mode: lighten;
+      mix-blend-mode: darken;
+    }
+    .item:hover {
+      animation: shake 100ms infinite;
+      // mix-blend-mode: multiply;
+      // filter: contrast(3);
+    }
+    @keyframes shake {
+      50% {
+        transform: translateX(5px);
       }
-      .item-div {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        right: 0;
-        z-index: 9999;
-        /* 主要内容 */
-        background: rgba(0, 0, 0, 0.2);
-        /* 模糊大小就是靠的blur这个函数中的数值大小 */
-        backdrop-filter: blur(5px);
-      }
-      .item-div:hover {
-        /* 主要内容 */
-        background: rgba(0, 0, 0, 0.5);
-        /* 模糊大小就是靠的blur这个函数中的数值大小 */
-        backdrop-filter: blur(10px);
-      }
+    }
+    .item::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      margin-left: 5px;
+      background: url('~@/assets/css/pic.jpeg') #ff0000 center/cover;
+      background-size: cover;
+      background-blend-mode: lighten;
+      mix-blend-mode: darken;
     }
   }
 }

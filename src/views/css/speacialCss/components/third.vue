@@ -89,5 +89,13 @@ export default {
       transparent
     );
   }
+  .content:hover {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      rgb(227, 227, 227),
+      50%,
+      transparent
+    );
+  }
 }
 </style>
