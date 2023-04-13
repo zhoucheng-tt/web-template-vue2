@@ -7,6 +7,6 @@
  */
 
 $themes: (
-  light: (background: radial-gradient(at top center, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.03) 100%)),
-  dark: (background: linear-gradient(to right, #ffafbd 0%, #d5dee7 45%, #c9ffbf 100%)),
+  light:(background: linear-gradient(120deg, #ffafbd, #d5dee7, #c9ffbf)),
+  dark: (background: linear-gradient(220deg, #d45e9b, #c88493, #b7a48b, #a1c181)),
   )

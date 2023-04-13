@@ -82,7 +82,7 @@ export default {
     justify-content: center;
     align-items: center;
     .text {
-      color: #ffffff;
+      color: purple;
       font-size: 32px;
       position: relative;
       z-index: 1;
@@ -92,9 +92,9 @@ export default {
       content: '人间会一如平常';
       width: 100%;
       position: absolute;
-      color: gray;
-      left: 15px;
-      transform: skewX(-50deg);
+      color: #999999;
+      left: 22px;
+      transform: skewX(-60deg);
       z-index: -1;
     }
   }

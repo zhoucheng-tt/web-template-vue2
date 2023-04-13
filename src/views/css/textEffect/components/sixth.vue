@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2023-02-24 14:41:58
+ * @Date: 2023-04-13 10:37:17
  * @LastEditors: zhoucheng
 -->
 <template>
@@ -10,7 +10,7 @@
     <div class="title">{{ contentName }} </div>
     <div class="content">
       <div class="text">
-        {{dataList.startNumber}}
+        <span>haoren全都si了蟑螂争霸地球机器当了主人公他比我纯情太多</span>
       </div>
     </div>
   </div>
@@ -30,11 +30,7 @@ export default {
   data () {
     // 这里存放数据
     return {
-      dataList: {
-        startNumber: 0,
-        endNumber: 520,
-        speed: 10
-      }
+
     };
   },
   // 监听属性 类似于data概念
@@ -47,26 +43,11 @@ export default {
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.dynamicNumber(this.dataList.startNumber, this.dataList.endNumber, this.dataList.speed);
+
   },
   // 方法集合
   methods: {
-    // 递增函数
-    dynamicNumber (startNumber, endNumber, speed) {
-      if (endNumber > 0) {
-        let that = this
-        var timeTask = setInterval(function () {
-          startNumber++;
-          that.dataList.startNumber = startNumber
-          if (startNumber === endNumber) {
-            clearInterval(timeTask);
-          }
-        }, speed);
-      }
-      else {
-        alert('最终数字不是正数')
-      }
-    }
+
   },
   beforeCreate () { }, // 生命周期 - 创建之前
   beforeMount () { }, // 生命周期 - 挂载之前
@@ -100,10 +81,21 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 20px;
+    font-size: 32px;
+    color: purple;
+    letter-spacing: 2px;
     .text {
-      font-size: 32px;
-      color: purple;
-      letter-spacing: 5px;
+      span {
+        background: linear-gradient(270deg, #d45e9b, #c88493, #b7a48b, #a1c181)
+          no-repeat right bottom;
+        background-size: 0 2px;
+        transition: background-size 1s;
+      }
+      span:hover {
+        background-position-x: left;
+        background-size: 100% 2px;
+      }
     }
   }
 }

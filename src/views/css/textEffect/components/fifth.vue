@@ -2,16 +2,14 @@
  * @Description: 
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
- * @Date: 2023-02-24 14:41:58
+ * @Date: 2023-04-13 09:53:53
  * @LastEditors: zhoucheng
 -->
 <template>
   <div class='mainbody'>
     <div class="title">{{ contentName }} </div>
     <div class="content">
-      <div class="text">
-        {{dataList.startNumber}}
-      </div>
+      <span>人间会一如平常</span>
     </div>
   </div>
 </template>
@@ -30,11 +28,7 @@ export default {
   data () {
     // 这里存放数据
     return {
-      dataList: {
-        startNumber: 0,
-        endNumber: 520,
-        speed: 10
-      }
+
     };
   },
   // 监听属性 类似于data概念
@@ -47,26 +41,11 @@ export default {
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    this.dynamicNumber(this.dataList.startNumber, this.dataList.endNumber, this.dataList.speed);
+
   },
   // 方法集合
   methods: {
-    // 递增函数
-    dynamicNumber (startNumber, endNumber, speed) {
-      if (endNumber > 0) {
-        let that = this
-        var timeTask = setInterval(function () {
-          startNumber++;
-          that.dataList.startNumber = startNumber
-          if (startNumber === endNumber) {
-            clearInterval(timeTask);
-          }
-        }, speed);
-      }
-      else {
-        alert('最终数字不是正数')
-      }
-    }
+
   },
   beforeCreate () { }, // 生命周期 - 创建之前
   beforeMount () { }, // 生命周期 - 挂载之前
@@ -100,10 +79,22 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    .text {
-      font-size: 32px;
-      color: purple;
-      letter-spacing: 5px;
+    font-size: 32px;
+    color: purple;
+    user-select: none;
+    // filter: contrast(30);
+  }
+  .content:hover {
+    animation: textkeyframes 1s;
+  }
+  @keyframes textkeyframes {
+    from {
+      letter-spacing: -30px;
+      filter: blur(10px);
+    }
+    to {
+      letter-spacing: 1px;
+      filter: blur(1px);
     }
   }
 }

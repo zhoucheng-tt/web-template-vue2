@@ -32,6 +32,8 @@ export default {
         { sequence: 'second', contentName: '文字渐变色' },
         { sequence: 'third', contentName: '文本悬浮高亮' },
         { sequence: 'fourth', contentName: '数字递增显示' },
+        { sequence: 'fifth', contentName: '文字交融展开' },
+        { sequence: 'sixth', contentName: '文字底部渐变背景' },
       ]
     };
   },
