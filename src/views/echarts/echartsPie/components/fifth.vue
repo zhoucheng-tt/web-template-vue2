@@ -22,6 +22,8 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import resize from '@/components/mixins/resize'
 import * as echarts from 'echarts'
+import commonData from '@/data/commonData'
+// import colorList from '@/data/commonColor'
 export default {
   mixins: [resize],
   //import引入的组件需要注入到对象中才能使用
@@ -30,12 +32,6 @@ export default {
     contentName () {
       String
     },
-    dataList () {
-      Array
-    },
-    colorList () {
-      Array
-    }
   },
   data () {
     //这里存放数据
@@ -67,7 +63,6 @@ export default {
   methods: {
     initCharts () {
       this.chart = echarts.init(document.getElementById('pieChartFifth'));
-      let color = this.colorList;
       let colorList = [
         {
           type: 'linear',
@@ -103,12 +98,11 @@ export default {
           ],
         },
       ];
-      let datalist = this.dataList
       let chartData = [];
       let legendData = []
       let nameList = []
       let valueList = []
-      datalist.forEach(item => {
+      commonData.forEach(item => {
         legendData.push({ name: item.name })
         nameList.push(item.name);
         valueList.push(item.value);
@@ -139,7 +133,7 @@ export default {
           name: '',
           type: 'pie',
           clockWise: true,
-          hoverAnimation: false,
+          hoverAnimation: true,
           radius: getRadius(i),
           center: ['60%', '55%'],
           itemStyle: {
@@ -167,7 +161,7 @@ export default {
           textStyle: {
             rich: {
               circle: {
-                color: color[i],
+                color: colorList[i],
               },
             },
           },
@@ -179,7 +173,7 @@ export default {
           borderWidth: 0,
           trigger: 'item',
         },
-        color: color,
+        color: colorList,
         grid: {
           top: '15%',
           bottom: '50%',
@@ -204,11 +198,9 @@ export default {
               interval: 0,
               inside: false,
               textStyle: {
-                color: '#',
                 fontSize: 12,
                 rich: {
                   name: {
-                    color: '#',
                     fontSize: 12,
                     paddingLeft: 20,
                   },
@@ -234,7 +226,7 @@ export default {
           itemGap: 30,
           itemWidth: 10,
           formatter: (name) => {
-            var datas = datalist;
+            var datas = commonData;
             let total = 0;
             datas.map(item => {
               total += (item.value - 0)
@@ -257,7 +249,7 @@ export default {
           itemGap: 30,
           itemWidth: 10,
           formatter: (name) => {
-            var datas = datalist;
+            var datas = commonData;
             let total = 0;
             datas.map(item => {
               total += (item.value - 0)

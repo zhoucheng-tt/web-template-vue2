@@ -20,6 +20,7 @@
 // 例如：import 《组件名称》 from '《组件路径》';
 import resize from '@/components/mixins/resize'
 import * as echarts from 'echarts'
+import commonData from '@/data/commonData'
 export default {
   mixins: [resize],
   components: {},
@@ -27,8 +28,6 @@ export default {
     contentName () {
       String
     },
-    dataList () { Array },
-    colorList () { Array }
   },
   data () {
     // 这里存放数据
@@ -55,7 +54,7 @@ export default {
       this.chart = echarts.init(document.getElementById('columnChartFirst'));
       let xDataList = []
       let yDataList = []
-      this.dataList.forEach(item => {
+      commonData.forEach(item => {
         xDataList.push(item.name)
         yDataList.push(item.value)
       })

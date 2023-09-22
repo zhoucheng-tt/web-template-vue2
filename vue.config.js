@@ -16,21 +16,21 @@ module.exports = {
   devServer: {
     proxy: {
       '/api/': {
-        target: 'http://192.168.1.201:10001/',
+        target: 'http://192.168.1.67:28080/',
         changeOrigin: true,
         ws: true,
         pathRewrite: {
           '^/api': '/'
         }
       },
-      '/nodeTest/': {
-        target: 'http://127.0.0.1:8081/',
-        changeOrigin: true,
-        ws: true,
-        pathRewrite: {
-          '^/nodeTest': '/'
-        }
-      },
+      // '/nodeTest/': {
+      //   target: 'http://127.0.0.1:1000/',
+      //   changeOrigin: true,
+      //   ws: true,
+      //   pathRewrite: {
+      //     '^/nodeTest': '/'
+      //   }
+      // },
       // '/flv/': {
       //   target: 'http://36.133.182.60:8005/', // 奇隆大桥
       //   changeOrigin: true,

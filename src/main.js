@@ -22,7 +22,6 @@ Vue.use(api)
 import axios from 'axios'
 Vue.prototype.$axios = axios
 
-
 // 通用json
 import commonData from '@/data/commonData.json'
 Vue.prototype.$commonData = commonData
@@ -37,12 +36,16 @@ Vue.use(publicVar)
 import '@/commons/date.js'
 
 // 防连点指令
-import directives from '@/commons/preventReClick.js'
-Vue.use(directives)
+import preventReClick from '@/commons/preventReClick.js'
+Vue.use(preventReClick)
+import debounce from '@/commons/debounce.js'
+Vue.use(debounce)
 
 // 使用echarts npm install --save echarts
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
+// 3d图表库
+import 'echarts-gl'
 
 // 使用深拷贝
 import deepClone from '@/commons/deepClone.js'

@@ -12,9 +12,7 @@
             :key="index">
       <!-- is 接收的需要是个变量 -->
       <component :is="item.sequence"
-                 :contentName="item.contentName"
-                 :dataList=$commonData
-                 :colorList=$commonColor></component>
+                 :contentName="item.contentName"></component>
     </el-row>
   </div>
 </template>

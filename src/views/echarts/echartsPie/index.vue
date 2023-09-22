@@ -12,9 +12,7 @@
             :key="index">
       <!-- is 接收的需要是个变量 -->
       <component :is="item.sequence"
-                 :contentName="item.contentName"
-                 :dataList=$commonData
-                 :colorList=$commonColor></component>
+                 :contentName="item.contentName"></component>
     </el-row>
   </div>
 </template>
@@ -23,6 +21,7 @@
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
 import { commonName } from './commons/compImpRegUse'
+
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: commonName(),
@@ -35,6 +34,7 @@ export default {
         { sequence: 'third', contentName: '3' },
         { sequence: 'fourth', contentName: '4' },
         { sequence: 'fifth', contentName: '5' },
+        { sequence: 'sixth', contentName: '6' },
       ]
     };
   },

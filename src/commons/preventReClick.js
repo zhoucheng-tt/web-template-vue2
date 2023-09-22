@@ -1,16 +1,15 @@
 /*
- * @Description: 防止用户连点操作 
+ * @Description:自定义 节流指令
  * @Author: zhoucheng
  * @Github: https://github.com/zhoucheng-tt
  * @Date: 2023-03-18 15:26:11
  * @LastEditors: zhoucheng
  */
+// 防止用户连点操作
 export default {
-  // 防重复点击(指令实现)
   install (Vue) {
     Vue.directive('preventRepeat', {
       inserted (el, binding) {
-        console.log(el, binding);
         function __avoidRepeatHandler__ () {
           if (el.__clickDisabled__) return
           el.__clickDisabled__ = true

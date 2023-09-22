@@ -20,6 +20,9 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import resize from '@/components/mixins/resize'
 import * as echarts from 'echarts'
+import commonData from '@/data/commonData'
+import colorList from '@/data/commonColor'
+
 export default {
   mixins: [resize],
   //import引入的组件需要注入到对象中才能使用
@@ -28,12 +31,6 @@ export default {
     contentName () {
       String
     },
-    dataList () {
-      Array
-    },
-    colorList () {
-      Array
-    }
   },
   data () {
     //这里存放数据
@@ -65,15 +62,13 @@ export default {
   methods: {
     initCharts () {
       this.chart = echarts.init(document.getElementById('pieChartThird'));
-      let datalist = this.dataList;
-      let color = this.colorList
       let legendData = []
-      this.dataList.forEach(item => {
+      commonData.forEach(item => {
         legendData.push(item.name)
       })
       this.chart.setOption({
         backgroundColor: "",
-        color: color,
+        color: colorList,
         legend: {
           data: legendData,
           orient: 'vertical',
@@ -128,13 +123,13 @@ export default {
               }
             }
           },
-          data: datalist
+          data: commonData
         }]
       });
 
       setTimeout(function () {
         this.chart.on('mouseover', function (params) {
-          if (params.name == datalist[0].name) {
+          if (params.name == commonData[0].name) {
             this.chart.dispatchAction({
               type: 'highlight',
               seriesIndex: 0,
@@ -147,7 +142,7 @@ export default {
               dataIndex: 0
             });
           }
-        });
+        }, 1000);
 
         this.chart.on('mouseout', function (params) {
           console.log(params);

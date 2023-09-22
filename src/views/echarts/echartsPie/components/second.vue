@@ -20,6 +20,8 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import resize from '@/components/mixins/resize'
 import * as echarts from 'echarts'
+import commonData from '@/data/commonData'
+import colorList from '@/data/commonColor'
 export default {
   mixins: [resize],
   //import引入的组件需要注入到对象中才能使用
@@ -27,12 +29,6 @@ export default {
   props: {
     contentName () {
       String
-    },
-    dataList () {
-      Array
-    },
-    colorList () {
-      Array
     }
   },
   data () {
@@ -65,10 +61,8 @@ export default {
   methods: {
     initCharts () {
       this.chart = echarts.init(document.getElementById('pieChartSecond'));
-      let dataList = this.dataList
-      let colorList = this.colorList
       let dataNameList = []
-      this.dataList.forEach(item => {
+      commonData.forEach(item => {
         dataNameList.push(item.name)
       })
       this.chart.setOption({
@@ -103,7 +97,7 @@ export default {
           center: ['40%', '50%'],
           hoverAnimation: false,
           roseType: 'radius', //area
-          data: dataList,
+          data: commonData,
           itemStyle: {
             normal: {
               borderColor: '#333333',

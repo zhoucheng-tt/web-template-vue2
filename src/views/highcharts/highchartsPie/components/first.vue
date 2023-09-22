@@ -18,15 +18,13 @@
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》';
+import colorList from '@/data/commonColor'
 export default {
   // import引入的组件需要注入到对象中才能使用
   components: {},
   props: {
     contentName () {
       String
-    },
-    colorList () {
-      Array
     }
   },
   data () {
@@ -52,7 +50,7 @@ export default {
   methods: {
     // 初始化图表
     initChart () {
-      var each = window.Highcharts.each,
+      let each = window.Highcharts.each,
         round = Math.round,
         cos = Math.cos,
         sin = Math.sin,
@@ -105,7 +103,6 @@ export default {
         { name: 'c', y: 3, h: 8 },
         { name: 'd', y: 4, h: 10 },
       ]
-      let colorList = this.colorList
 
       // 图标渲染
       this.chartOptions = {

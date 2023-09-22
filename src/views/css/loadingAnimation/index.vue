@@ -33,6 +33,9 @@ export default {
         { sequence: 'third', contentName: '加载动画3' },
         { sequence: 'fourth', contentName: '加载动画4' },
         { sequence: 'fifth', contentName: '加载动画5' },
+        { sequence: 'sixth', contentName: '加载动画6' },
+        { sequence: 'seventh', contentName: '加载动画7' },
+        { sequence: 'eighth', contentName: '加载动画8' },
       ]
     };
   },
