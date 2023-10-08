@@ -10,12 +10,12 @@
     <div class="title">{{ contentName }} </div>
     <div class="content">
       <div class="item">
-        <span class="num"
-              :style="`transform: translate(-50%, -${number * 10}%)`">0123456789</span>
-        <span class="num"
-              :style="`transform: translate(-50%, -${number * 100}%)`">0123456789</span>
-        <span class="num"
-              :style="`transform: translate(-50%, -${number * 1000}%)`">0123456789</span>
+        <span class="num1"
+              :style="`transform: translate(-50%, -${parseInt(number/100)%10 * 10}%)`">0123456789</span>
+        <span class="num2"
+              :style="`transform: translate(-50%, -${parseInt(number/10)%10* 10}%)`">0123456789</span>
+        <span class="num3"
+              :style="`transform: translate(-50%, -${number%10 * 10}%)`">0123456789</span>
       </div>
     </div>
   </div>
@@ -35,7 +35,7 @@ export default {
   data () {
     // 这里存放数据
     return {
-      number: 8
+      number: 120
     };
   },
   // 监听属性 类似于data概念
@@ -48,9 +48,13 @@ export default {
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-    // setInterval(() => {
-    //   this.number--
-    // }, 1000)
+    setInterval(() => {
+      if (this.number <= 120) {
+        this.number--
+      } else if (this.number === 0) {
+        this.number++
+      }
+    }, 1000)
   },
   // 方法集合
   methods: {
@@ -87,25 +91,39 @@ export default {
     height: 90%;
     display: flex;
     .item {
-      width: 54px;
+      width: 100%;
       height: 80px;
       line-height: 80px;
       text-align: center;
       background-color: #149373;
       border-radius: 10px;
       overflow: hidden;
-      margin-right: 5px;
-
       position: relative;
       writing-mode: vertical-lr;
       text-orientation: upright;
-      .num {
+      .num1 {
         position: absolute;
-        left: 50%;
-        top: 10px;
+        left: 25%;
+        top: 9px;
         font-size: 63px;
         color: #ffffff;
-        transition: all 2.5s;
+        transition: all 1s;
+      }
+      .num2 {
+        position: absolute;
+        left: 50%;
+        top: 9px;
+        font-size: 63px;
+        color: #ffffff;
+        transition: all 1s;
+      }
+      .num3 {
+        position: absolute;
+        left: 75%;
+        top: 9px;
+        font-size: 63px;
+        color: #ffffff;
+        transition: all 1s;
       }
     }
   }

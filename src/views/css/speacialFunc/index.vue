@@ -29,7 +29,7 @@ export default {
     return {
       contentList: [
         { sequence: 'first', contentName: '电梯导航 （a标签实现）' },
-        { sequence: 'second', contentName: '数字滚动 1-100' },
+        { sequence: 'second', contentName: '数字滚动 0-120' },
       ]
     };
   },
