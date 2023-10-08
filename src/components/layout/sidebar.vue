@@ -34,6 +34,7 @@ export default {
             { code: "2-4", name: "动画样例", routeName: "animationExample", },
             { code: "2-5", name: "文本效果", routeName: "textEffect" },
             { code: "2-6", name: "特殊样式", routeName: "speacialCss" },
+            { code: "2-7", name: "特殊功能", routeName: "speacialFunc" },
           ]
         },
         {

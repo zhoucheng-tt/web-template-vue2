@@ -116,6 +116,12 @@ const routes = [
         meta: { name: "css-特殊样式", icon: "", type: "list" }
       },
       {
+        path: "/speacialFunc",
+        name: "speacialFunc",
+        component: () => import("@/views/css/speacialFunc/index.vue"),
+        meta: { name: "css-特殊功能", icon: "", type: "list" }
+      },
+      {
         path: "/flashback",
         name: "flashback",
         component: () => import("@/views/loginShow/flashback/index.vue"),
