@@ -49,10 +49,10 @@ export default {
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
     setInterval(() => {
-      if (this.number <= 120) {
+      if (this.number <= 120 && this.number !== 0) {
         this.number--
-      } else if (this.number === 0) {
-        this.number++
+      } else {
+        clearInterval()
       }
     }, 1000)
   },
@@ -64,7 +64,8 @@ export default {
   beforeMount () { }, // 生命周期 - 挂载之前
   beforeUpdate () { }, // 生命周期 - 更新之前
   updated () { }, // 生命周期 - 更新之后
-  beforeDestroy () { }, // 生命周期 - 销毁之前
+  beforeDestroy () {
+  }, // 生命周期 - 销毁之前
   destroyed () { }, // 生命周期 - 销毁完成
   activated () { }, // 如果页面有keep-alive缓存功能，这个函数会触发
 }
