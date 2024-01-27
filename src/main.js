@@ -5,20 +5,18 @@
  * @Date: 2022-10-10 10:09:50
  * @LastEditors: zhoucheng
  */
+import './public-path';
+
+
 import Vue from 'vue'
 import App from './App.vue'
 import ElementUI from 'element-ui'
-import '@/styles/index.scss'
 Vue.use(ElementUI)
+import '@/styles/index.scss'
 import store from './store'
-// 路由
 import router from "./router/index";
-
-// 封装axios
 import api from './axios/index'
 Vue.use(api)
-
-// axios
 import axios from 'axios'
 Vue.prototype.$axios = axios
 
@@ -60,10 +58,38 @@ Vue.use(VideoPlayer)
 import flvjs from 'flv.js'
 Vue.use(flvjs)
 
+let instance = null;
+function render (props = {}) {
+  const { container } = props;
+  instance = new Vue({
+    router,
+    store,
+    render: (h) => h(App),
+  }).$mount(container ? container.querySelector('#app') : '#app');
+}
 
-Vue.config.productionTip = false
-new Vue({
-  router,
-  store,
-  render: h => h(App),
-}).$mount('#app')
+// 如何独立运行微应用？
+if (!window.__POWERED_BY_QIANKUN__) {
+  render();
+}
+
+export async function bootstrap (props) {
+  // 启动
+  console.log(props);
+}
+export async function mount (props) {
+  // 挂载  onGlobalStateChange 可通过这个属性来进行父子应用通信 发布订阅机制
+  render(props);
+}
+export async function unmount (props) {
+  console.log(props);
+  // 卸载
+  instance.$destroy();
+}
+
+// Vue.config.productionTip = false
+// new Vue({
+//   router,
+//   store,
+//   render: h => h(App),
+// }).$mount('#app')
