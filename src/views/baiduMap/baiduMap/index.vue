@@ -50,7 +50,7 @@ export default {
   },
 }
 </script>
-<style lang='less' scoped>
+<style lang='scss' scoped>
 //@import url(); 引入公共css类
 .mainbody {
   width: 100%;
